@@ -1,0 +1,105 @@
+[gd_scene load_steps=17 format=3 uid="uid://b78g1rgrn1b71"]
+
+[ext_resource type="Texture2D" uid="uid://deyl25pb83ux4" path="res://Textures/ESO_-_Milky_Way.jpg" id="1_qj6rq"]
+[ext_resource type="Script" path="res://Scripts/Orbit.gd" id="2_7bq1o"]
+[ext_resource type="Script" path="res://Scripts/Earth.gd" id="2_apka7"]
+[ext_resource type="Texture2D" uid="uid://cpeb0efwvrsk" path="res://Textures/earth_texturemap.png" id="2_dosqo"]
+[ext_resource type="Texture2D" uid="uid://bvogip48ajbum" path="res://Textures/moon_texturemap.png" id="5_dlt0b"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_phk1r"]
+panorama = ExtResource("1_qj6rq")
+
+[sub_resource type="Sky" id="Sky_4ylgw"]
+sky_material = SubResource("PanoramaSkyMaterial_phk1r")
+
+[sub_resource type="Environment" id="Environment_sb8y2"]
+background_mode = 2
+sky = SubResource("Sky_4ylgw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7knv"]
+shading_mode = 0
+albedo_color = Color(1, 1, 0.235294, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vtncj"]
+material = SubResource("StandardMaterial3D_t7knv")
+radius = 50.0
+height = 100.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x5xdl"]
+radius = 50.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3rtjg"]
+albedo_texture = ExtResource("2_dosqo")
+
+[sub_resource type="SphereMesh" id="SphereMesh_4cq4k"]
+material = SubResource("StandardMaterial3D_3rtjg")
+radius = 20.0
+height = 40.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6aye1"]
+radius = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mepnn"]
+albedo_texture = ExtResource("5_dlt0b")
+
+[sub_resource type="SphereMesh" id="SphereMesh_pcsds"]
+material = SubResource("StandardMaterial3D_mepnn")
+radius = 10.0
+height = 20.0
+
+[node name="SolarSystem" type="Node3D"]
+
+[node name="SPACE!!" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sb8y2")
+
+[node name="Sun" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sun"]
+mesh = SubResource("SphereMesh_vtncj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sun"]
+shape = SubResource("SphereShape3D_x5xdl")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sun"]
+light_energy = 8.0
+omni_range = 1000.0
+omni_attenuation = 0.0346741
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.470861, 0.871538, 0.136794, -0.114927, -0.093139, 0.988998, 0.87469, -0.481401, 0.0563079, 40.9738, 543.302, 51.3591)
+
+[node name="Centre" type="Node3D" parent="."]
+
+[node name="OrbitingNode" type="Node3D" parent="Centre"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 223.122, 0, 0)
+script = ExtResource("2_7bq1o")
+orbit_center = NodePath("..")
+orbit_radius = 250.0
+
+[node name="Earth" type="StaticBody3D" parent="Centre/OrbitingNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0990219, 0, 0)
+script = ExtResource("2_apka7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Centre/OrbitingNode/Earth"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08084, 0, 0)
+mesh = SubResource("SphereMesh_4cq4k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Centre/OrbitingNode/Earth"]
+shape = SubResource("SphereShape3D_6aye1")
+
+[node name="OrbitingNode2" type="Node3D" parent="Centre/OrbitingNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.8651, 0, 0)
+script = ExtResource("2_7bq1o")
+orbit_center = NodePath("..")
+orbit_radius = 0.5
+
+[node name="Moon" type="StaticBody3D" parent="Centre/OrbitingNode/OrbitingNode2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0990219, 0, 0)
+script = ExtResource("2_apka7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Centre/OrbitingNode/OrbitingNode2/Moon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08084, 0, 0)
+mesh = SubResource("SphereMesh_pcsds")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Centre/OrbitingNode/OrbitingNode2/Moon"]
+shape = SubResource("SphereShape3D_6aye1")
