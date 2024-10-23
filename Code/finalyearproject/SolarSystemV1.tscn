@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbp5hlkgbf8bn"]
+
+[ext_resource type="Material" uid="uid://ch31ei0a2kh03" path="res://Earth.tres" id="1_dxpg7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ii1pe"]
+albedo_color = Color(1, 1, 0.215686, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_1mj85"]
+material = SubResource("StandardMaterial3D_ii1pe")
+radius = 109.0
+height = 218.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_0qyfe"]
+material = ExtResource("1_dxpg7")
+radius = 1.0
+height = 2.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Sun" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.00049, 0)
+mesh = SubResource("SphereMesh_1mj85")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sun"]
+transform = Transform3D(0.197709, 0, 0.980261, 0, 1, 0, -0.980261, 0, 0.197709, 0, 0, 0)
+omni_range = 109.0
+
+[node name="Earth" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 170.998, 2.4524, 0)
+material_override = ExtResource("1_dxpg7")
+mesh = SubResource("SphereMesh_0qyfe")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.60757, 0.794266, 0, -0.794266, 0.60757, 0, 187.889, 256.17)
+fov = 139.1
