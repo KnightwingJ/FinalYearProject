@@ -1,17 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://775vg2cgcajx"]
+[gd_scene load_steps=7 format=3 uid="uid://775vg2cgcajx"]
 
 [ext_resource type="Script" path="res://Scripts/Controller.gd" id="1_862vy"]
 [ext_resource type="Texture2D" uid="uid://deyl25pb83ux4" path="res://Textures/ESO_-_Milky_Way.jpg" id="2_5cglb"]
+[ext_resource type="PackedScene" uid="uid://chyqai0ttbchl" path="res://Scripts/control.tscn" id="3_qlgpf"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_odpix"]
 panorama = ExtResource("2_5cglb")
 
-[sub_resource type="Sky" id="Sky_q07an"]
+[sub_resource type="Sky" id="Sky_amrsm"]
 sky_material = SubResource("PanoramaSkyMaterial_odpix")
 
 [sub_resource type="Environment" id="Environment_i7jv6"]
 background_mode = 2
-sky = SubResource("Sky_q07an")
+sky = SubResource("Sky_amrsm")
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_862vy")
@@ -25,3 +26,7 @@ transform = Transform3D(0.947746, 0.195608, -0.252022, 0, 0.789973, 0.613141, 0.
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40.5111, 0)
 omni_range = 55.684
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("3_qlgpf")]

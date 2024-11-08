@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddh1syyottwfg"]
+
+[ext_resource type="PackedScene" uid="uid://cr41kgfhs0vtv" path="res://Animations/EChord.blend" id="1_2nnsb"]
+[ext_resource type="Texture2D" uid="uid://deyl25pb83ux4" path="res://Textures/ESO_-_Milky_Way.jpg" id="2_i21tf"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c3knc"]
+panorama = ExtResource("2_i21tf")
+
+[sub_resource type="Sky" id="Sky_q07an"]
+sky_material = SubResource("PanoramaSkyMaterial_c3knc")
+
+[sub_resource type="Environment" id="Environment_gnrwb"]
+background_mode = 2
+sky = SubResource("Sky_q07an")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="EChord" parent="." instance=ExtResource("1_2nnsb")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60423, 3.70102)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gnrwb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40.5111, 0)
+omni_range = 55.684

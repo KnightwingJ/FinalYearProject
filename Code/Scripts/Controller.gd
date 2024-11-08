@@ -4,6 +4,13 @@ var steps = 16  # Number of steps
 var tracks = 8  # Number of tracks
 var step_size = 2.0  # Distance between steps in the grid
 
+
+# Example to toggle the menu visibility
+func toggle_menu():
+	$Control.visible = !$Control.visible
+
+
+
 func _ready():
 	for track in range(tracks):
 		for step in range(steps):

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4lnr603dld2e"]
+
+[ext_resource type="PackedScene" uid="uid://cr41kgfhs0vtv" path="res://Animations/EChord.blend" id="1_mq1r8"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="EChord" parent="." instance=ExtResource("1_mq1r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0278138, 1.19209e-07, -0.0509129)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34363, 3.20535)
