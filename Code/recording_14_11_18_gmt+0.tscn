@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqacy33s72lg5"]
+
+[ext_resource type="PackedScene" uid="uid://coaoeeee5moj2" path="res://Animations/recording_14_11_18_gmt+0.blend" id="1_wcdyf"]
+
+[node name="recording_14_11_18_gmt+0" instance=ExtResource("1_wcdyf")]

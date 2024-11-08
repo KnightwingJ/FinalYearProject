@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ddh1syyottwfg"]
 
-[ext_resource type="PackedScene" uid="uid://cr41kgfhs0vtv" path="res://Animations/EChord.blend" id="1_2nnsb"]
 [ext_resource type="Texture2D" uid="uid://deyl25pb83ux4" path="res://Textures/ESO_-_Milky_Way.jpg" id="2_i21tf"]
+[ext_resource type="PackedScene" uid="uid://coaoeeee5moj2" path="res://Animations/recording_14_11_18_gmt+0.blend" id="2_xeff7"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c3knc"]
 panorama = ExtResource("2_i21tf")
@@ -15,10 +15,8 @@ sky = SubResource("Sky_q07an")
 
 [node name="Node3D" type="Node3D"]
 
-[node name="EChord" parent="." instance=ExtResource("1_2nnsb")]
-
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60423, 3.70102)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.248602, 0.159341, 1.72964)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gnrwb")
@@ -26,3 +24,5 @@ environment = SubResource("Environment_gnrwb")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40.5111, 0)
 omni_range = 55.684
+
+[node name="recording_14_11_18_gmt+0" parent="." instance=ExtResource("2_xeff7")]
