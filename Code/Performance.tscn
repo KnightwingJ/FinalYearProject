@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ddh1syyottwfg"]
 
 [ext_resource type="Texture2D" uid="uid://deyl25pb83ux4" path="res://Textures/ESO_-_Milky_Way.jpg" id="2_i21tf"]
-[ext_resource type="PackedScene" uid="uid://coaoeeee5moj2" path="res://Animations/recording_14_11_18_gmt+0.blend" id="2_xeff7"]
+[ext_resource type="PackedScene" uid="uid://bojm5jiqm3tmd" path="res://Animations/freemocap_sample_data.blend" id="2_w8d3t"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c3knc"]
 panorama = ExtResource("2_i21tf")
@@ -25,4 +25,4 @@ environment = SubResource("Environment_gnrwb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40.5111, 0)
 omni_range = 55.684
 
-[node name="recording_14_11_18_gmt+0" parent="." instance=ExtResource("2_xeff7")]
+[node name="freemocap_sample_data" parent="." instance=ExtResource("2_w8d3t")]
