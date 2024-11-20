@@ -14,6 +14,10 @@ config/name="SolarSystem3D"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalSoundManager="*res://global_sound_manager.gd"
+
 [dotnet]
 
 project/assembly_name="SolarSystem3D"

@@ -1,5 +1,6 @@
 extends Control
 
+var sound_sequence=[]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,5 +13,7 @@ func _process(delta: float) -> void:
 
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Performance.tscn")
+	GlobalSoundManager.sound_sequnce=sound_sequence
+	GlobalSoundManager.switch_to_playback_scene()
+	#get_tree().change_scene_to_file("res://Performance.tscn")
 	pass # Replace with function body.

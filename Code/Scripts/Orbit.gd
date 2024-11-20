@@ -25,4 +25,3 @@ func _process(delta: float):
 
 		# Update the translation of the OrbitingNode to create the orbit effect
 		position = new_position
-

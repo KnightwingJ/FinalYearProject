@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://775vg2cgcajx"]
+[gd_scene load_steps=11 format=3 uid="uid://775vg2cgcajx"]
 
-[ext_resource type="Script" path="res://Scripts/Controller.gd" id="1_862vy"]
+[ext_resource type="Script" path="res://sequence.gd" id="1_66d3e"]
 [ext_resource type="Texture2D" uid="uid://deyl25pb83ux4" path="res://Textures/ESO_-_Milky_Way.jpg" id="2_5cglb"]
 [ext_resource type="PackedScene" uid="uid://chyqai0ttbchl" path="res://Scripts/control.tscn" id="3_qlgpf"]
 
@@ -14,19 +14,51 @@ sky_material = SubResource("PanoramaSkyMaterial_odpix")
 background_mode = 2
 sky = SubResource("Sky_amrsm")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_qatb3"]
+size = Vector3(60, 2, 60)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yp04n"]
+albedo_color = Color(0.72549, 0.4, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mwlgp"]
+material = SubResource("StandardMaterial3D_yp04n")
+size = Vector2(60, 60)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xqjkm"]
+
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_862vy")
+script = ExtResource("1_66d3e")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_i7jv6")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.947746, 0.195608, -0.252022, 0, 0.789973, 0.613141, 0.319025, -0.581102, 0.748694, 0, 9.95756, 11.9907)
-
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40.5111, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.8305, 0)
+light_energy = 4.388
 omni_range = 55.684
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("3_qlgpf")]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.729485, 0)
+shape = SubResource("BoxShape3D_qatb3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/CollisionShape3D"]
+mesh = SubResource("PlaneMesh_mwlgp")
+skeleton = NodePath("../..")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_xqjkm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0

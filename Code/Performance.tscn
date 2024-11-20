@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddh1syyottwfg"]
+[gd_scene load_steps=9 format=3 uid="uid://ddh1syyottwfg"]
 
+[ext_resource type="PackedScene" uid="uid://bipuoiixcs8qb" path="res://Animations/freemocap_sample_.blend" id="2_8cfsy"]
 [ext_resource type="Texture2D" uid="uid://deyl25pb83ux4" path="res://Textures/ESO_-_Milky_Way.jpg" id="2_i21tf"]
-[ext_resource type="PackedScene" uid="uid://bojm5jiqm3tmd" path="res://Animations/freemocap_sample_data.blend" id="2_w8d3t"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c3knc"]
 panorama = ExtResource("2_i21tf")
@@ -13,16 +13,37 @@ sky_material = SubResource("PanoramaSkyMaterial_c3knc")
 background_mode = 2
 sky = SubResource("Sky_q07an")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vrtsk"]
+size = Vector3(60, 2, 60)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oipe2"]
+albedo_color = Color(0.72549, 0.4, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_upaui"]
+material = SubResource("StandardMaterial3D_oipe2")
+size = Vector2(60, 60)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.248602, 0.159341, 1.72964)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.248602, 1.15934, 2.72964)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gnrwb")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40.5111, 0)
-omni_range = 55.684
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40.1181, 0)
+visible = false
+omni_range = 34.138
 
-[node name="freemocap_sample_data" parent="." instance=ExtResource("2_w8d3t")]
+[node name="freemocap_sample_" parent="." instance=ExtResource("2_8cfsy")]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.729485, 0)
+shape = SubResource("BoxShape3D_vrtsk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/CollisionShape3D"]
+mesh = SubResource("PlaneMesh_upaui")
+skeleton = NodePath("../..")
