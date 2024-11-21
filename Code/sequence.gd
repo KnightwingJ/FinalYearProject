@@ -1,57 +1,138 @@
-extends Node3D
+extends Marker3D
 
 var samples:Array
+var players:Array
 
-@export var button_scene:PackedScene
-@export var path_str="res://Sounds/"
-@export var guitar="res://Sounds/Guitar"
-@export var perform:Control
+@export var font:Font 
 
+var sequence = []
+var file_names = []
 
-@onready var button_container = $CanvasLayer/VBoxContainer
+@export var path_str = "res://Sounds/Guitar" 
+@export var pad_scene:PackedScene
 
-var sound_sequence=[]
-var sound_files=[]
-var audio_player = AudioStreamPlayer.new()
+@export var steps = 8
+
+var rows:int
+var cols:int
+
+func initialise_sequence(rows, cols):
+	for i in range(rows):
+		var row = []
+		for j in range(cols):
+			row.append(false)
+		sequence.append(row)
+	self.rows = rows
+	self.cols = cols
+
 func _ready():
-	loadSounds()
-	create_buttons()
+	load_samples()
+	initialise_sequence(samples.size(), steps)
+	make_sequencer()
 	
-	pass
-func loadSounds():
-	var dir = DirAccess.open("res://Sounds/Guitar")
+	for i in range(50):
+		var asp = AudioStreamPlayer.new()
+		add_child(asp)
+		players.push_back(asp)
+
+var asp_index = 0
+
+#func print_sequence():
+	#print()
+	#for row in range(samples.size() -1, -1, -1):
+		#var s = ""
+		#for col in range(steps):
+			#s += "1" if sequence[row][col] else "0" 
+		#print(s)
+		
+func play_sample(e, i):
+	
+	print("play sample:" + str(i))
+	var p:AudioStream = samples[i]
+	var asp = players[asp_index]
+	asp.stream = p
+	asp.play()
+	asp_index = (asp_index + 1) % players.size()
+
+func toggle(e, row, col):
+	print("toggle " + str(row) + " " + str(col))
+	sequence[row][col] = ! sequence[row][col]
+	
+	if sequence[row][col]:
+		play_sample(0, row)
+	#print_sequence()
+	
+
+var s = 0.04
+var spacer = 1.1
+
+func make_sequencer():	
+	
+	for col in range(steps):		
+		
+		for row in range(samples.size()):
+			var pad = pad_scene.instantiate()
+			
+			var p = Vector3(s * col * spacer, s * row * spacer, 0)
+			pad.position = p		
+			pad.rotation = rotation
+			#var tm = TextMesh.new()
+			#tm.font = font
+			#tm.font_size = 1
+			#tm.depth = 0.005
+			## tm.text = str(row) + "," + str(col)
+			#tm.text = file_names[row]
+			#pad.get_node("MeshInstance3D2").mesh = tm
+			pad.area_entered.connect(toggle.bind(row, col))
+			add_child(pad)
+		
+func load_samples():
+	var dir = DirAccess.open(path_str)
 	if dir:
 		dir.list_dir_begin()
-		var file_name=dir.get_next()
-		while file_name:
-			if file_name.ends_with(".mp3"):
-				sound_files.append("res://Sounds/Guitar/"+file_name)
-			file_name=dir.get_next()
-		dir.list_dir_end()
-	print("Loaded Sound Files:",sound_files)
-	
-func create_buttons():
-	for sound_path in sound_files:
-		var button = Button.new()
-		button.text = sound_path.get_file()
-		button_container.add_child(button)
-		#button.pressed.connect(lambda path=sound_path: on_sound_button_pressed(path))
+		var file_name = dir.get_next()
 		
-#func on_sound_button_pressed(sound_path: String):
-	#print("Playing sound: ",sound_path)
-	#play_sound(sound_path)
+		# From https://forum.godotengine.org/t/loading-an-ogg-or-wav-file-from-res-sfx-in-gdscript/28243/2
+		while file_name != "":
+			if dir.current_is_dir():
+				print("Found directory: " + file_name)
+			if file_name.ends_with('.wav.import') or file_name.ends_with('.mp3.import'):			
+				file_name = file_name.left(len(file_name) - len('.import'))
+				# var asp = AudioStreamPlayer.new()
+				# asp.set_stream(load(SOUND_DIR + '/' + filename))
+				# add_child(asp)
+				# var arr = file_name.split('/')
+				# var name = arr[arr.size()-1].split('.')[0]
+				# samples[name] = asp
+			
+				var stream = load(path_str + "/" + file_name)
+				stream.resource_name = file_name
+				samples.push_back(stream)
+				file_names.push_back(file_name)
+				# $AudioStreamPlayer.play()
+				# break
+			file_name = dir.get_next()	
 
-func play_sound(sound_path: String):
-	var stream = load(sound_path)
-	if stream:
-		audio_player.stream=stream
-		add_child(audio_player)
-		audio_player.play()
-	
-func on_sound_button_pressed(sound_path:String):
-	print("Added to sequence")
-	sound_sequence.append(sound_path)
-	perform.sound_sequence=sound_sequence
+func play_step(col):
+	var p = Vector3(s * col * spacer, s * -1 * spacer, 0)
+			
+	$timer_ball.position = p
+	for row in range(rows):
+		if sequence[row][col]:
+			play_sample(0, row)
 
-func _process(delta):
-	pass
+var step:int = 0
+
+func _on_timer_timeout() -> void:
+	print("step " + str(step))
+	play_step(step)
+	step = (step + 1) % steps
+	pass # Replace with function body.
+
+
+func _on_start_stop_area_entered(area: Area3D) -> void:
+	if $Timer.is_stopped():
+		$Timer.start()
+	else:
+		$Timer.stop()
+	pass # Replace with function body.

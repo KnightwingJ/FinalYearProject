@@ -36,6 +36,12 @@ _subresources={
 "PATH:AnimationPlayer": {
 "optimizer/enabled": false
 },
+"PATH:Camera": {
+"import/skip_import": true
+},
+"PATH:Light": {
+"import/skip_import": true
+},
 "PATH:root/Skeleton3D": {
 "rest_pose/external_animation_library": null
 }

@@ -13,7 +13,5 @@ func _process(delta: float) -> void:
 
 
 func _on_button_pressed() -> void:
-	GlobalSoundManager.sound_sequnce=sound_sequence
-	GlobalSoundManager.switch_to_playback_scene()
-	#get_tree().change_scene_to_file("res://Performance.tscn")
+	get_tree().change_scene_to_file("res://Performance.tscn")
 	pass # Replace with function body.

@@ -32,9 +32,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.248602, 1.15934, 2.72964)
 environment = SubResource("Environment_gnrwb")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40.1181, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.6005, 0)
 visible = false
-omni_range = 34.138
+light_energy = 2.556
+omni_range = 96.557
 
 [node name="freemocap_sample_" parent="." instance=ExtResource("2_8cfsy")]
 
