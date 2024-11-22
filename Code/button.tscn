@@ -2,17 +2,17 @@
 
 [ext_resource type="Script" path="res://button.gd" id="1_8265u"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_1y8uv"]
+[sub_resource type="SphereMesh" id="SphereMesh_oj21m"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yccfa"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_a002c"]
 
 [node name="Area3D" type="Area3D"]
 script = ExtResource("1_8265u")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_1y8uv")
+mesh = SubResource("SphereMesh_oj21m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_yccfa")
+shape = SubResource("SphereShape3D_a002c")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

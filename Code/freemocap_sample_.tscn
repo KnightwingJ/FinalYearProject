@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckind3id7dy7b"]
+
+[ext_resource type="PackedScene" uid="uid://bipuoiixcs8qb" path="res://Animations/freemocap_sample_.blend" id="1_lb11k"]
+
+[node name="freemocap_sample_" instance=ExtResource("1_lb11k")]
+
+[node name="head_center" parent="freemocap_sample_data_origin/empties_parent" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.151419, 1.34713, 0.0133232)
+
+[node name="Camera3D" type="Camera3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.946144, 2.49207)

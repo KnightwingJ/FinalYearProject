@@ -13,6 +13,7 @@ var file_names = []
 
 @export var steps = 8
 
+
 var rows:int
 var cols:int
 
@@ -29,13 +30,21 @@ func _ready():
 	load_samples()
 	initialise_sequence(samples.size(), steps)
 	make_sequencer()
+	menu()
+	
 	
 	for i in range(50):
 		var asp = AudioStreamPlayer.new()
 		add_child(asp)
 		players.push_back(asp)
-
+		
 var asp_index = 0
+
+func menu():
+	var menu = get_node("../CanvasLayer/Control")
+	if Input.is_action_pressed("Menu"):
+		print("Menu")
+		menu.Visible=!menu.Visible
 
 #func print_sequence():
 	#print()
@@ -63,30 +72,31 @@ func toggle(e, row, col):
 	#print_sequence()
 	
 
-var s = 0.04
-var spacer = 1.1
+var s = 1
+var spacer = 1.0
 
 func make_sequencer():	
 	
-	for col in range(steps):		
+	#for col in range(steps):		
 		
-		for row in range(samples.size()):
-			var pad = pad_scene.instantiate()
+	for row in range(samples.size()):
+		var pad = pad_scene.instantiate()
 			
-			var p = Vector3(s * col * spacer, s * row * spacer, 0)
-			pad.position = p		
-			pad.rotation = rotation
-			#var tm = TextMesh.new()
+		var p = Vector3(0, s * row * spacer, 0)
+		pad.position = p		
+		pad.rotation = rotation
+		#var tm = TextMesh.new()
 			#tm.font = font
 			#tm.font_size = 1
 			#tm.depth = 0.005
 			## tm.text = str(row) + "," + str(col)
 			#tm.text = file_names[row]
 			#pad.get_node("MeshInstance3D2").mesh = tm
-			pad.area_entered.connect(toggle.bind(row, col))
-			add_child(pad)
+		pad.area_entered.connect(toggle.bind(row))
+		add_child(pad)
 		
 func load_samples():
+	
 	var dir = DirAccess.open(path_str)
 	if dir:
 		dir.list_dir_begin()
@@ -94,10 +104,11 @@ func load_samples():
 		
 		# From https://forum.godotengine.org/t/loading-an-ogg-or-wav-file-from-res-sfx-in-gdscript/28243/2
 		while file_name != "":
-			if dir.current_is_dir():
-				print("Found directory: " + file_name)
-			if file_name.ends_with('.wav.import') or file_name.ends_with('.mp3.import'):			
-				file_name = file_name.left(len(file_name) - len('.import'))
+			#if dir.current_is_dir():
+				#print("Found directory: " + file_name)
+			if file_name.ends_with('.wav') or file_name.ends_with('.mp3'):			
+				file_name = file_name.left(len(file_name))
+				#print(file_name)
 				# var asp = AudioStreamPlayer.new()
 				# asp.set_stream(load(SOUND_DIR + '/' + filename))
 				# add_child(asp)
