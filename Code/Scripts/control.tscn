@@ -20,11 +20,12 @@ offset_bottom = 81.0
 action_mode = 0
 text = "Perform"
 
-[node name="EChord" type="Button" parent="."]
+[node name="guitar" type="Button" parent="."]
 layout_mode = 0
 offset_top = 2.0
 offset_right = 69.0
 offset_bottom = 33.0
-text = "E Chord"
+text = "Guitar"
 
 [connection signal="pressed" from="Perform" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="guitar" to="." method="_on_guitar_pressed"]
