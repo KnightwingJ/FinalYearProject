@@ -20,12 +20,11 @@ var animation_sources={
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$"E Chord".pressed.connect(() -> _on_button_pressed("E Chord"))
-	#$"E Chord".connect("pressed",_on_button_pressed,chords["E Chord"])
-	$"A Chord".pressed.connect(_on_button_pressed("A Chord"))
-	$"D Chord".pressed.connect(_on_button_pressed("D Chord"))
-	$"G Chord".pressed.connect(_on_button_pressed("G Chord"))
-	$"C Chord".pressed.connect(_on_button_pressed("C Chord"))
+	$"E Chord".pressed.connect(Callable(self, "_on_button_pressed").bind("E Chord"))
+	$"A Chord".pressed.connect(Callable(self, "_on_button_pressed").bind("A Chord"))
+	$"D Chord".pressed.connect(Callable(self, "_on_button_pressed").bind("D Chord"))
+	$"G Chord".pressed.connect(Callable(self, "_on_button_pressed").bind("G Chord"))
+	$"C Chord".pressed.connect(Callable(self, "_on_button_pressed").bind("C Chord"))
 	
 
 
@@ -41,14 +40,23 @@ func _on_button_pressed(button_name:String):
 		sound.play()
 		
 		#sound.connect("finsihed",sound,"queue_free")
-		GlobalSoundManager.sound_sequence.append(button_name)
-	print("Button Pressed: %s",% button_name)
-
-func _on_guitar_pressed():
-	_add_animation("Guitar")
-	
-	pass # Replace with function body.
+		GlobalSoundManager.sound_sequence.append(chords[button_name])
+	print("Button Pressed:" + button_name)
+	print(GlobalSoundManager.sound_sequence)
 
 func _add_animation(animation_name):
 	animation_queue.append(animation_name)
 	print("Added ")
+
+
+func _on_perform_pressed():
+	if GlobalSoundManager.sound_sequence.size()>0:
+		print(GlobalSoundManager.sound_sequence)
+		get_tree().change_scene_to_file("res://Performance.tscn")
+	pass # Replace with function body.
+
+
+func _on_reset_pressed():
+	GlobalSoundManager.sound_sequence.clear()
+	print("Sequence Clear")
+	pass # Replace with function body.

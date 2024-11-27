@@ -73,7 +73,7 @@ func toggle(e, row, col):
 	
 
 var s = 1
-var spacer = 1.0
+var spacer = 1.5
 
 func make_sequencer():	
 	

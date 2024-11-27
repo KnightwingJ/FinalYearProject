@@ -8,7 +8,7 @@ func _ready():
 	
 	if animation:
 		animation.play("mixamo_com")
-		print("Animation Fund")
+		print("Animation Found")
 	else:
 		print("Animation Not Found")
 	pass # Replace with function body.

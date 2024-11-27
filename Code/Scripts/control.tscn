@@ -59,3 +59,14 @@ offset_top = 166.0
 offset_right = 68.0
 offset_bottom = 197.0
 text = "C Chord"
+
+[node name="Reset" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 259.0
+offset_right = 52.0
+offset_bottom = 290.0
+text = "Reset"
+
+[connection signal="pressed" from="Perform" to="." method="_on_perform_pressed"]
+[connection signal="pressed" from="Reset" to="." method="_on_reset_pressed"]
