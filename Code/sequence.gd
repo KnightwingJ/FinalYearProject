@@ -79,13 +79,12 @@ func make_sequencer():
 			pad.input_event.connect(toggle.bind(row,col))
 			add_child(pad)
 			pad.name=str(samples[row])
+			
 func load_samples():
 	var dir = DirAccess.open(path_str)
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
-		
-		# From https://forum.godotengine.org/t/loading-an-ogg-or-wav-file-from-res-sfx-in-gdscript/28243/2
 		while file_name != "":
 			if dir.current_is_dir():
 				print("Found directory: " + file_name)

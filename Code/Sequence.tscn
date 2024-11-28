@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://775vg2cgcajx"]
+[gd_scene load_steps=12 format=3 uid="uid://775vg2cgcajx"]
 
 [ext_resource type="Script" path="res://sequence.gd" id="1_66d3e"]
 [ext_resource type="Texture2D" uid="uid://deyl25pb83ux4" path="res://Textures/ESO_-_Milky_Way.jpg" id="2_5cglb"]
@@ -26,10 +26,6 @@ material = SubResource("StandardMaterial3D_yp04n")
 size = Vector2(60, 60)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xqjkm"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_f1xd2"]
-radius = 0.02
-height = 0.04
 
 [node name="Node3D" type="Node3D"]
 
@@ -69,6 +65,3 @@ script = ExtResource("1_66d3e")
 pad_scene = ExtResource("4_m3c2h")
 
 [node name="Timer" type="Timer" parent="sequencer"]
-
-[node name="timer_ball" type="MeshInstance3D" parent="sequencer"]
-mesh = SubResource("SphereMesh_f1xd2")
