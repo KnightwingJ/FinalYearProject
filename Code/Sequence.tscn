@@ -37,7 +37,7 @@ height = 0.04
 environment = SubResource("Environment_i7jv6")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.107154, 7.69037, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6366, 9.67999, 1.40093)
 light_energy = 4.388
 omni_range = 22.313
 
@@ -56,7 +56,7 @@ mesh = SubResource("PlaneMesh_mwlgp")
 skeleton = NodePath("../..")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12.7779, 3.14445, 1.38366)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15.1404, 9.78396, 1.38366)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
 
@@ -64,7 +64,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12.77
 shape = SubResource("CapsuleShape3D_xqjkm")
 
 [node name="sequencer" type="Marker3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2.33003, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2.33003, -4.7914)
 script = ExtResource("1_66d3e")
 pad_scene = ExtResource("4_m3c2h")
 

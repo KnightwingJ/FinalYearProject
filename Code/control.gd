@@ -42,7 +42,7 @@ func _on_button_pressed(button_name:String):
 		#sound.connect("finsihed",sound,"queue_free")
 		GlobalSoundManager.sound_sequence.append(chords[button_name])
 	print("Button Pressed:" + button_name)
-	print(GlobalSoundManager.sound_sequence)
+	#print(GlobalSoundManager.sound_sequence)
 
 func _add_animation(animation_name):
 	animation_queue.append(animation_name)
@@ -51,7 +51,7 @@ func _add_animation(animation_name):
 
 func _on_perform_pressed():
 	if GlobalSoundManager.sound_sequence.size()>0:
-		print(GlobalSoundManager.sound_sequence)
+		#print(GlobalSoundManager.sound_sequence)
 		get_tree().change_scene_to_file("res://Performance.tscn")
 	pass # Replace with function body.
 
