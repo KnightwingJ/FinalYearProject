@@ -6,15 +6,23 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_aytl5"]
 
-[node name="Area3D" type="Area3D"]
+[node name="Area3D" type="Node3D"]
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+collide_with_areas = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.38939)
+current = true
+
+[node name="Area3D" type="Area3D" parent="."]
 script = ExtResource("1_8265u")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
 mesh = SubResource("BoxMesh_2111n")
+skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_aytl5")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-
-[connection signal="input_event" from="." to="." method="_on_input_event"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Area3D"]

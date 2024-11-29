@@ -13,6 +13,8 @@ var file_names = []
 
 @export var steps = 8
 
+@onready var ray=$RayCast3D
+
 var rows:int
 var cols:int
 
@@ -121,3 +123,4 @@ func _on_start_stop_area_entered(area: Area3D) -> void:
 	else:
 		$Timer.stop()
 	pass # Replace with function body.
+	

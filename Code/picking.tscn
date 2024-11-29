@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dquo5wiqduh6g"]
+
+[ext_resource type="Script" path="res://picking.gd" id="1_t52lx"]
+[ext_resource type="Script" path="res://button.gd" id="2_fsiwa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fa883"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_obhvq"]
+
+[sub_resource type="Environment" id="Environment_r1gee"]
+
+[node name="Picking" type="Node3D"]
+script = ExtResource("1_t52lx")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+collide_with_areas = true
+
+[node name="Area3D" type="Area3D" parent="."]
+script = ExtResource("2_fsiwa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_fa883")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("BoxMesh_obhvq")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.59161)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r1gee")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
