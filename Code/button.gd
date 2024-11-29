@@ -15,7 +15,7 @@ var in_color:Color = Color.from_hsv(.7, 1, 1, 0.1)
 func _ready() -> void:
 	
 	mat = StandardMaterial3D.new()
-	$MeshInstance3D.set_surface_override_material(0, mat)
+	$Meshy.set_surface_override_material(0, mat)
 	mat.albedo_color = in_color
 	pass # Replace with function body.
 
@@ -27,8 +27,8 @@ func _on_button_pressed(button_name: String) -> void:
 	#print("Click")
 	mat.albedo_color = out_color
 	_toggle()
-	if play:
-		$AudioStreamPlayer3D.play()
+	#if play:
+	#	$AudioStreamPlayer3D.play()
 	print("Button Pressed: %s" % button_name)
 	
 

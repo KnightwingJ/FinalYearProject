@@ -65,6 +65,3 @@ script = ExtResource("1_66d3e")
 pad_scene = ExtResource("4_8ygsa")
 
 [node name="Timer" type="Timer" parent="sequencer"]
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-collide_with_areas = true

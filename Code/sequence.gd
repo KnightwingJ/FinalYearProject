@@ -13,7 +13,8 @@ var file_names = []
 
 @export var steps = 8
 
-@onready var ray=$RayCast3D
+@onready var camera =$"../CharacterBody3D/Camera3D"
+
 
 var rows:int
 var cols:int
@@ -78,9 +79,9 @@ func make_sequencer():
 			pad.rotation = rotation
 			
 			#pad.area_entered.connect(toggle.bind(row, col))
-			pad.input_event.connect(toggle.bind(row,col))
+			#pad.input_event.connect(toggle.bind(row,col))
 			add_child(pad)
-			pad.name=str(samples[row])
+			#pad.name=str(samples[row])
 			
 func load_samples():
 	var dir = DirAccess.open(path_str)
