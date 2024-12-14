@@ -19,9 +19,6 @@ config/icon="res://icon.svg"
 
 GlobalSoundManager="*res://global_sound_manager.gd"
 Animations="*res://animations.gd"
-XrSimulator="*res://addons/xr-simulator/XRSimulator.tscn"
-UserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
-RumbleManager="*res://addons/godot-xr-tools/rumble/rumble_manager.gd"
 
 [dotnet]
 
@@ -37,5 +34,4 @@ Menu={
 
 [xr]
 
-openxr/enabled=true
 shaders/enabled=true
