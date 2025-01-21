@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://775vg2cgcajx"]
+[gd_scene load_steps=23 format=3 uid="uid://775vg2cgcajx"]
 
+[ext_resource type="Script" path="res://rythmrender.gd" id="1_0jnj5"]
 [ext_resource type="Script" path="res://sequence.gd" id="1_66d3e"]
 [ext_resource type="Texture2D" uid="uid://deyl25pb83ux4" path="res://Textures/ESO_-_Milky_Way.jpg" id="2_5cglb"]
 [ext_resource type="PackedScene" uid="uid://chyqai0ttbchl" path="res://Scripts/control.tscn" id="3_qlgpf"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/functions/movement_direct.gd" id="4_45jfq"]
 [ext_resource type="PackedScene" uid="uid://2xn0851y6k62" path="res://button.tscn" id="4_m3c2h"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/player/player_body.gd" id="5_7ty6n"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_odpix"]
 panorama = ExtResource("2_5cglb")
@@ -27,7 +30,34 @@ size = Vector2(60, 60)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xqjkm"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_jycyi"]
+radius = 0.01
+
+[sub_resource type="SphereMesh" id="SphereMesh_qn1fr"]
+radius = 0.02
+height = 0.04
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ujw6o"]
+radius = 0.01
+
+[sub_resource type="SphereMesh" id="SphereMesh_j05dd"]
+radius = 0.02
+height = 0.04
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jt7us"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_h7rn0"]
+radius = 0.02
+height = 0.04
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1jlvd"]
+albedo_color = Color(0.34902, 0, 0.74902, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1hke1"]
+radius = 0.02
+
 [node name="root" type="Node3D"]
+script = ExtResource("1_0jnj5")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_i7jv6")
@@ -51,13 +81,50 @@ shape = SubResource("BoxShape3D_qatb3")
 mesh = SubResource("PlaneMesh_mwlgp")
 skeleton = NodePath("../..")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15.1404, 9.78396, 1.38366)
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15.1404, 1.39698, 1.38366)
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+[node name="Camera3D" type="Camera3D" parent="Player"]
+visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_xqjkm")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.605636, 0)
+
+[node name="XRCamera3D" type="XRCamera3D" parent="Player/XROrigin3D"]
+
+[node name="left" type="XRController3D" parent="Player/XROrigin3D"]
+tracker = &"left_hand"
+
+[node name="Area3D" type="Area3D" parent="Player/XROrigin3D/left"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/XROrigin3D/left/Area3D"]
+shape = SubResource("SphereShape3D_jycyi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/XROrigin3D/left"]
+mesh = SubResource("SphereMesh_qn1fr")
+
+[node name="XRToolsMovementDirect" type="Node" parent="Player/XROrigin3D/left"]
+script = ExtResource("4_45jfq")
+
+[node name="Right" type="XRController3D" parent="Player/XROrigin3D"]
+tracker = &"right_hand"
+
+[node name="Area3D" type="Area3D" parent="Player/XROrigin3D/Right"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/XROrigin3D/Right/Area3D"]
+shape = SubResource("SphereShape3D_ujw6o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/XROrigin3D/Right"]
+mesh = SubResource("SphereMesh_j05dd")
+
+[node name="XRToolsPlayerBody" type="CharacterBody3D" parent="Player/XROrigin3D"]
+script = ExtResource("5_7ty6n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/XROrigin3D/XRToolsPlayerBody"]
+shape = SubResource("CapsuleShape3D_jt7us")
 
 [node name="sequencer" type="Marker3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2.33003, -4.7914)
@@ -65,3 +132,15 @@ script = ExtResource("1_66d3e")
 pad_scene = ExtResource("4_m3c2h")
 
 [node name="Timer" type="Timer" parent="sequencer"]
+
+[node name="start_stop" type="Area3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="start_stop"]
+mesh = SubResource("SphereMesh_h7rn0")
+surface_material_override/0 = SubResource("StandardMaterial3D_1jlvd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="start_stop"]
+shape = SubResource("SphereShape3D_1hke1")
+
+[connection signal="timeout" from="sequencer/Timer" to="sequencer" method="_on_timer_timeout"]
+[connection signal="area_entered" from="start_stop" to="sequencer" method="_on_start_stop_area_entered"]

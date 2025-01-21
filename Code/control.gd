@@ -60,3 +60,7 @@ func _on_reset_pressed():
 	GlobalSoundManager.sound_sequence.clear()
 	print("Sequence Clear")
 	pass # Replace with function body.
+
+
+func _on_timer_timeout() -> void:
+	pass # Replace with function body.

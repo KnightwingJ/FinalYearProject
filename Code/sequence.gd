@@ -75,8 +75,8 @@ func make_sequencer():
 			pad.position = p		
 			pad.rotation = rotation
 			
-			#pad.area_entered.connect(toggle.bind(row, col))
-			pad.input_event.connect(toggle.bind(row,col))
+			pad.area_entered.connect(toggle.bind(row, col))
+			#pad.input_event.connect(toggle.bind(row,col))
 			add_child(pad)
 			pad.name=str(samples[row])
 			
@@ -102,15 +102,15 @@ func play_step(col):
 	var p = Vector3(s * col * spacer, s * -1 * spacer, 0)
 			
 	$timer_ball.position = p
-	#for row in range(rows):
-		#if sequence[row][col]:
-			#play_sample(0, row)
+	for row in range(rows):
+		if sequence[row][col]:
+			play_sample(0, row)
 
 var step:int = 0
 
 func _on_timer_timeout() -> void:
 	print("step " + str(step))
-	#play_step(step)
+	play_step(step)
 	step = (step + 1) % steps
 	pass # Replace with function body.
 
