@@ -121,3 +121,19 @@ func _on_start_stop_area_entered(area: Area3D) -> void:
 	else:
 		$Timer.stop()
 	pass # Replace with function body.
+
+func add_to_global():
+	for col in range(cols): #Loop through each step
+		var step_sounds=[] #Sounds for each step
+		for row in range(rows): #Loop through each row
+			if sequence[row][col]: #Check if step is toggled
+				step_sounds.append(samples[row]) #Add corresponding audio
+		GlobalSoundManager.sound_sequence.append(step_sounds) #Add to Global Sound Manager
+
+
+func _on_perform_area_entered(area: Area3D) -> void:
+	add_to_global()
+	if GlobalSoundManager.sound_sequence.size()>0:
+		print(GlobalSoundManager.sound_sequence)
+		#get_tree().change_scene_to_file("res://Performance.tscn")
+	pass # Replace with function body.

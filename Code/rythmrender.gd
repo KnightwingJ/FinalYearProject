@@ -33,9 +33,10 @@ func _ready():
 			print("ARGH!!!!")
 			return false
 	else:
-		print("OpenXR not initialized, please check if your headset is connected")
+		print("OpenXR not initialized")
+		get_viewport().use_xr = false
 	
-	get_viewport().transparent_bg = true
-	environment.background_mode = Environment.BG_CLEAR_COLOR
-	environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
+	#get_viewport().transparent_bg = true
+	#environment.background_mode = Environment.BG_CLEAR_COLOR
+	#environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	pass

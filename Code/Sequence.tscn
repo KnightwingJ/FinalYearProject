@@ -1,10 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://775vg2cgcajx"]
+[gd_scene load_steps=25 format=3 uid="uid://775vg2cgcajx"]
 
 [ext_resource type="Script" path="res://rythmrender.gd" id="1_0jnj5"]
 [ext_resource type="Script" path="res://sequence.gd" id="1_66d3e"]
 [ext_resource type="Texture2D" uid="uid://deyl25pb83ux4" path="res://Textures/ESO_-_Milky_Way.jpg" id="2_5cglb"]
 [ext_resource type="PackedScene" uid="uid://chyqai0ttbchl" path="res://Scripts/control.tscn" id="3_qlgpf"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/functions/movement_direct.gd" id="4_45jfq"]
+[ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="4_ipp6d"]
 [ext_resource type="PackedScene" uid="uid://2xn0851y6k62" path="res://button.tscn" id="4_m3c2h"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/player/player_body.gd" id="5_7ty6n"]
 
@@ -56,6 +56,10 @@ albedo_color = Color(0.34902, 0, 0.74902, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_1hke1"]
 radius = 0.02
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2rt24"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7lypt"]
+
 [node name="root" type="Node3D"]
 script = ExtResource("1_0jnj5")
 
@@ -70,6 +74,10 @@ omni_range = 22.313
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("3_qlgpf")]
+anchor_right = 0.08
+anchor_bottom = 0.481
+offset_right = -0.160004
+offset_bottom = 0.311981
 
 [node name="Ground" type="StaticBody3D" parent="."]
 
@@ -91,7 +99,7 @@ visible = false
 shape = SubResource("CapsuleShape3D_xqjkm")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.605636, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23809, 0)
 
 [node name="XRCamera3D" type="XRCamera3D" parent="Player/XROrigin3D"]
 
@@ -106,8 +114,7 @@ shape = SubResource("SphereShape3D_jycyi")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player/XROrigin3D/left"]
 mesh = SubResource("SphereMesh_qn1fr")
 
-[node name="XRToolsMovementDirect" type="Node" parent="Player/XROrigin3D/left"]
-script = ExtResource("4_45jfq")
+[node name="FunctionTeleport" parent="Player/XROrigin3D/left" instance=ExtResource("4_ipp6d")]
 
 [node name="Right" type="XRController3D" parent="Player/XROrigin3D"]
 tracker = &"right_hand"
@@ -121,6 +128,8 @@ shape = SubResource("SphereShape3D_ujw6o")
 mesh = SubResource("SphereMesh_j05dd")
 
 [node name="XRToolsPlayerBody" type="CharacterBody3D" parent="Player/XROrigin3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15.1404, 2.00262, 1.38366)
+top_level = true
 script = ExtResource("5_7ty6n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/XROrigin3D/XRToolsPlayerBody"]
@@ -142,5 +151,15 @@ surface_material_override/0 = SubResource("StandardMaterial3D_1jlvd")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="start_stop"]
 shape = SubResource("SphereShape3D_1hke1")
 
+[node name="Perform" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3632, 2.95446, 9.7047)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Perform"]
+shape = SubResource("BoxShape3D_2rt24")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Perform/CollisionShape3D"]
+mesh = SubResource("BoxMesh_7lypt")
+
 [connection signal="timeout" from="sequencer/Timer" to="sequencer" method="_on_timer_timeout"]
 [connection signal="area_entered" from="start_stop" to="sequencer" method="_on_start_stop_area_entered"]
+[connection signal="area_entered" from="Perform" to="sequencer" method="_on_perform_area_entered"]
