@@ -18,19 +18,6 @@ func _ready() -> void:
 	mat.albedo_color = in_color
 	pass # Replace with function body.
 
-
-
-
-# Called when the object is clicked
-func _on_button_pressed(button_name: String) -> void:
-	#print("Click")
-	#mat.albedo_color = out_color
-	_toggle()
-	if play:
-		$AudioStreamPlayer3D.play()
-	print("Button Pressed: %s" % button_name)
-	
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -40,16 +27,9 @@ func _toggle():
 		mat.albedo_color=out_color
 	else:
 		mat.albedo_color=in_color
-	toggle=!toggle
+	#toggle=!toggle
 	
-func _input(event):
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			_on_button_pressed(self.name)
-		 # Replace with function body.
-
-func _on_input_event(camera, event, event_position, normal, shape_idx):
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT :
-			_on_button_pressed(self.name)
+func _on_area_entered(area):
+	toggle=!toggle
+	_toggle()
 	pass # Replace with function body.

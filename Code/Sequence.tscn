@@ -67,9 +67,9 @@ script = ExtResource("1_0jnj5")
 environment = SubResource("Environment_i7jv6")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6366, 9.67999, 1.40093)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.410018, 20.2213, 1.40093)
 light_energy = 4.388
-omni_range = 22.313
+omni_range = 153.865
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -90,7 +90,7 @@ mesh = SubResource("PlaneMesh_mwlgp")
 skeleton = NodePath("../..")
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15.1404, 1.39698, 1.38366)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.4341, 1.39698, 1.38366)
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 visible = false
