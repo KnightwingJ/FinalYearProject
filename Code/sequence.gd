@@ -61,8 +61,8 @@ func toggle(e, row, col):
 	print_sequence()
 	
 
-var s = 0.04
-var spacer = 1.1
+var s = 0.1
+var spacer = 1.5
 
 func make_sequencer():	
 	
@@ -123,17 +123,20 @@ func _on_start_stop_area_entered(area: Area3D) -> void:
 	pass # Replace with function body.
 
 func add_to_global():
+	var step_sounds=[] #Sounds for each step
 	for col in range(cols): #Loop through each step
-		var step_sounds=[] #Sounds for each step
 		for row in range(rows): #Loop through each row
 			if sequence[row][col]: #Check if step is toggled
 				step_sounds.append(samples[row]) #Add corresponding audio
-		GlobalSoundManager.sound_sequence.append(step_sounds) #Add to Global Sound Manager
+	for steps in step_sounds:
+		GlobalSoundManager.sound_sequence.append(steps) #Add to Global Sound Manager
 
 
 func _on_perform_area_entered(area: Area3D) -> void:
 	add_to_global()
 	if GlobalSoundManager.sound_sequence.size()>0:
 		print(GlobalSoundManager.sound_sequence)
-		#get_tree().change_scene_to_file("res://Performance.tscn")
+		get_tree().change_scene_to_file("res://Performance.tscn")
+	else:
+		print("Empty")
 	pass # Replace with function body.

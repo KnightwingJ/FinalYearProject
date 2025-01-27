@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://775vg2cgcajx"]
+[gd_scene load_steps=26 format=3 uid="uid://775vg2cgcajx"]
 
 [ext_resource type="Script" path="res://rythmrender.gd" id="1_0jnj5"]
 [ext_resource type="Script" path="res://sequence.gd" id="1_66d3e"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://chyqai0ttbchl" path="res://Scripts/control.tscn" id="3_qlgpf"]
 [ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="4_ipp6d"]
 [ext_resource type="PackedScene" uid="uid://2xn0851y6k62" path="res://button.tscn" id="4_m3c2h"]
+[ext_resource type="Script" path="res://movement.gd" id="4_n2x3i"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/player/player_body.gd" id="5_7ty6n"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_odpix"]
@@ -57,8 +58,10 @@ albedo_color = Color(0.34902, 0, 0.74902, 1)
 radius = 0.02
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2rt24"]
+size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_7lypt"]
+size = Vector3(0.5, 0.5, 0.5)
 
 [node name="root" type="Node3D"]
 script = ExtResource("1_0jnj5")
@@ -90,10 +93,11 @@ mesh = SubResource("PlaneMesh_mwlgp")
 skeleton = NodePath("../..")
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.4341, 1.39698, 1.38366)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.95644, 0.0278962)
+script = ExtResource("4_n2x3i")
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0821363, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_xqjkm")
@@ -102,6 +106,7 @@ shape = SubResource("CapsuleShape3D_xqjkm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23809, 0)
 
 [node name="XRCamera3D" type="XRCamera3D" parent="Player/XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.318635, 0)
 
 [node name="left" type="XRController3D" parent="Player/XROrigin3D"]
 tracker = &"left_hand"
@@ -128,7 +133,7 @@ shape = SubResource("SphereShape3D_ujw6o")
 mesh = SubResource("SphereMesh_j05dd")
 
 [node name="XRToolsPlayerBody" type="CharacterBody3D" parent="Player/XROrigin3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15.1404, 2.00262, 1.38366)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.956, 0.028)
 top_level = true
 script = ExtResource("5_7ty6n")
 
@@ -136,13 +141,14 @@ script = ExtResource("5_7ty6n")
 shape = SubResource("CapsuleShape3D_jt7us")
 
 [node name="sequencer" type="Marker3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2.33003, -4.7914)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.17269, 2.40405, -0.616317)
 script = ExtResource("1_66d3e")
 pad_scene = ExtResource("4_m3c2h")
 
 [node name="Timer" type="Timer" parent="sequencer"]
 
 [node name="start_stop" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.74884, 0, -0.600128)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="start_stop"]
 mesh = SubResource("SphereMesh_h7rn0")
@@ -152,7 +158,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_1jlvd")
 shape = SubResource("SphereShape3D_1hke1")
 
 [node name="Perform" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3632, 2.95446, 9.7047)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.340817, 2.44373, 2.65609)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Perform"]
 shape = SubResource("BoxShape3D_2rt24")

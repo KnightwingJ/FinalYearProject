@@ -9,7 +9,6 @@ var in_color:Color = Color.from_hsv(.7, 1, 1, 0.1)
 @export var play:bool=true
 @export var toggle:bool=false
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
@@ -24,9 +23,9 @@ func _process(delta: float) -> void:
 
 func _toggle():
 	if toggle==false:
-		mat.albedo_color=out_color
-	else:
 		mat.albedo_color=in_color
+	else:
+		mat.albedo_color=out_color
 	#toggle=!toggle
 	
 func _on_area_entered(area):
