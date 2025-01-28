@@ -24,8 +24,10 @@ func _process(delta: float) -> void:
 func _toggle():
 	if toggle==false:
 		mat.albedo_color=in_color
+		$MeshInstance3D.size+=Vector3(0.01,0.01,0.01)
 	else:
 		mat.albedo_color=out_color
+		$MeshInstance3D.size-=Vector3(0.01,0.01,0.01)
 	#toggle=!toggle
 	
 func _on_area_entered(area):

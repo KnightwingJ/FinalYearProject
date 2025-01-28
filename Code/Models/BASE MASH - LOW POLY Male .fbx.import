@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b0chrtcsbx5ou"
-path="res://.godot/imported/BASE MASH - LOW POLY Male .fbx-55cd0b57a485c182533e3f8bc9b71211.scn"
+valid=false
 
 [deps]
 
 source_file="res://Models/BASE MASH - LOW POLY Male .fbx"
-dest_files=["res://.godot/imported/BASE MASH - LOW POLY Male .fbx-55cd0b57a485c182533e3f8bc9b71211.scn"]
 
 [params]
 
