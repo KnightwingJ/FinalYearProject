@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://775vg2cgcajx"]
+[gd_scene load_steps=29 format=3 uid="uid://775vg2cgcajx"]
 
 [ext_resource type="Script" path="res://rythmrender.gd" id="1_0jnj5"]
 [ext_resource type="Script" path="res://sequence.gd" id="1_66d3e"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://2xn0851y6k62" path="res://button.tscn" id="4_m3c2h"]
 [ext_resource type="Script" path="res://movement.gd" id="4_n2x3i"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/player/player_body.gd" id="5_7ty6n"]
+[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="6_dqnew"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="9_er3p4"]
+[ext_resource type="PackedScene" uid="uid://c3oc07wgvwwgw" path="res://VR_menu.tscn" id="10_7pk36"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_odpix"]
 panorama = ExtResource("2_5cglb")
@@ -75,6 +78,7 @@ light_energy = 4.388
 omni_range = 153.865
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("3_qlgpf")]
 anchor_right = 0.08
@@ -132,6 +136,9 @@ shape = SubResource("SphereShape3D_ujw6o")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player/XROrigin3D/Right"]
 mesh = SubResource("SphereMesh_j05dd")
 
+[node name="FunctionPointer" parent="Player/XROrigin3D/Right" instance=ExtResource("6_dqnew")]
+laser_length = 1
+
 [node name="XRToolsPlayerBody" type="CharacterBody3D" parent="Player/XROrigin3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.956, 0.028)
 top_level = true
@@ -165,6 +172,11 @@ shape = SubResource("BoxShape3D_2rt24")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Perform/CollisionShape3D"]
 mesh = SubResource("BoxMesh_7lypt")
+
+[node name="Viewport2Din3D" parent="." instance=ExtResource("9_er3p4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38438, -7.11456)
+scene = ExtResource("10_7pk36")
+scene_properties_keys = PackedStringArray()
 
 [connection signal="timeout" from="sequencer/Timer" to="sequencer" method="_on_timer_timeout"]
 [connection signal="area_entered" from="start_stop" to="sequencer" method="_on_start_stop_area_entered"]

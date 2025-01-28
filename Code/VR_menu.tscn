@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://c3oc07wgvwwgw"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Instrument" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 115.0
+offset_bottom = 26.0
+text = "Instrument"
+
+[node name="Steps" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = 71.0
+offset_right = 136.0
+offset_bottom = 103.0
+text = "Number of Steps"
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 26.0
+offset_right = 118.0
+offset_bottom = 57.0
+item_count = 2
+popup/item_0/text = "Guitar"
+popup/item_1/text = "Drums"
+popup/item_1/id = 1
