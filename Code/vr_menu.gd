@@ -18,4 +18,5 @@ func _on_h_slider_drag_ended(value_changed: bool) -> void:
 
 
 func _on_option_button_item_selected(index: int) -> void:
+	Variables.instrument=$OptionButton.get_item_text(index)
 	pass # Replace with function body.

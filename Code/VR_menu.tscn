@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://c3oc07wgvwwgw"]
+[gd_scene load_steps=2 format=3 uid="uid://c3oc07wgvwwgw"]
+
+[ext_resource type="Script" path="res://vr_menu.gd" id="1_0bfnn"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_0bfnn")
 
 [node name="Instrument" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -31,3 +34,21 @@ item_count = 2
 popup/item_0/text = "Guitar"
 popup/item_1/text = "Drums"
 popup/item_1/id = 1
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 102.0
+offset_right = 179.0
+offset_bottom = 118.0
+
+[node name="slider_value" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 72.0
+offset_right = 164.0
+offset_bottom = 100.0
+text = "0"
+
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="drag_ended" from="HSlider" to="." method="_on_h_slider_drag_ended"]

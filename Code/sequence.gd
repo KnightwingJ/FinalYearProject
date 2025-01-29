@@ -8,11 +8,10 @@ var players:Array
 var sequence = []
 var file_names = []
 
-@export var path_str = "res://Sounds/Guitar" 
+@export var path_str = "res://Sounds" 
 @export var pad_scene:PackedScene
 
-@export var steps = 8
-
+var steps = Variables.steps
 var rows:int
 var cols:int
 
@@ -81,7 +80,8 @@ func make_sequencer():
 			pad.name=str(samples[row])
 			
 func load_samples():
-	var dir = DirAccess.open(path_str)
+	var full_path=path_str+"/"+Variables.instrument
+	var dir = DirAccess.open(full_path)
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
