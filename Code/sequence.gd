@@ -8,12 +8,16 @@ var players:Array
 var sequence = []
 var file_names = []
 
-@export var path_str = "res://Sounds" 
+@export var path_str = "res://Sounds/" 
 @export var pad_scene:PackedScene
 
 var steps = Variables.steps
+
 var rows:int
 var cols:int
+var instrument = Variables.instrument
+#Variables.instrument
+
 
 func initialise_sequence(rows, cols):
 	for i in range(rows):
@@ -25,6 +29,9 @@ func initialise_sequence(rows, cols):
 	self.cols = cols
 
 func _ready():
+	#Variables.instrument="Guitar"
+	print("The current instrument is "+Variables.instrument)
+	print(steps)
 	load_samples()
 	initialise_sequence(samples.size(), steps)
 	make_sequencer()
@@ -64,7 +71,7 @@ var s = 0.1
 var spacer = 1.5
 
 func make_sequencer():	
-	
+	print(steps)
 	for col in range(steps):		
 		
 		for row in range(samples.size()):
@@ -80,7 +87,8 @@ func make_sequencer():
 			pad.name=str(samples[row])
 			
 func load_samples():
-	var full_path=path_str+"/"+Variables.instrument
+	var full_path=path_str+instrument
+	print(full_path)
 	var dir = DirAccess.open(full_path)
 	if dir:
 		dir.list_dir_begin()
@@ -90,7 +98,7 @@ func load_samples():
 				print("Found directory: " + file_name)
 			if file_name.ends_with('.wav') or file_name.ends_with('.mp3'):			
 				file_name = file_name.left(len(file_name))
-				var stream = load(path_str + "/" + file_name)
+				var stream = load(full_path + "/" + file_name)
 				stream.resource_name = file_name
 				samples.push_back(stream)
 				file_names.push_back(file_name)

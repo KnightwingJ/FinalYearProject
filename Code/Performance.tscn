@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ddh1syyottwfg"]
+[gd_scene load_steps=23 format=3 uid="uid://ddh1syyottwfg"]
 
 [ext_resource type="Texture2D" uid="uid://deyl25pb83ux4" path="res://Textures/ESO_-_Milky_Way.jpg" id="2_i21tf"]
 [ext_resource type="Script" path="res://animation_player.gd" id="3_u4brh"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://movement.gd" id="6_bv6ey"]
 [ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="7_1qjrk"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/player/player_body.gd" id="8_u3dru"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="9_idyxt"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c3knc"]
 panorama = ExtResource("2_i21tf")
@@ -58,8 +59,8 @@ environment = SubResource("Environment_gnrwb")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.59037, 0)
 light_energy = 4.513
-omni_range = 13.824
-omni_attenuation = 0.315
+omni_range = 37.211
+omni_attenuation = 0.553
 
 [node name="Ground" type="StaticBody3D" parent="."]
 
@@ -152,5 +153,11 @@ script = ExtResource("8_u3dru")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/XROrigin3D/XRToolsPlayerBody"]
 shape = SubResource("CapsuleShape3D_0m3nk")
+
+[node name="Viewport2Din3D" parent="." instance=ExtResource("9_idyxt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91449, 3.44632, 0)
+scene = ExtResource("4_tfkw2")
+unshaded = true
+scene_properties_keys = PackedStringArray("Home.gd")
 
 [editable path="Guitar Playing"]

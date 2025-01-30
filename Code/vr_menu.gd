@@ -11,12 +11,17 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_h_slider_drag_ended(value_changed: bool) -> void:
-	$slider_value.text=str($HSlider.value)
-	$HSlider.value=Variables.steps
+func _on_option_button_item_selected(index: int) -> void:
+	Variables.instrument=$OptionButton.get_item_text(index)
 	pass # Replace with function body.
 
 
-func _on_option_button_item_selected(index: int) -> void:
-	Variables.instrument=$OptionButton.get_item_text(index)
+func _on_h_slider_value_changed(value):
+	$slider_value.text=str($HSlider.value)
+	Variables.steps=$HSlider.value
+	pass # Replace with function body.
+
+
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://Sequence.tscn")
 	pass # Replace with function body.
