@@ -13,9 +13,9 @@ var chords={
 
 var animation_sources={
 	"guitar":preload("res://Animations/Animation_Scenes/guitar_playing.tscn"),
-	"piano":preload("res://Animations/Animation_Scenes/piano_playing.tscn"),
-	"piano2":preload("res://Animations/Animation_Scenes/piano_playing_2.tscn"),
-	"drums":preload("res://Animations/Animation_Scenes/playing_drums.tscn")
+	#"piano":preload("res://Animations/Animation_Scenes/piano_playing.tscn"),
+	#"piano2":preload("res://Animations/Animation_Scenes/piano_playing_2.tscn"),
+	#"drums":preload("res://Animations/Animation_Scenes/playing_drums.tscn")
 }
 
 # Called when the node enters the scene tree for the first time.

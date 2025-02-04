@@ -1,6 +1,7 @@
 extends Control
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -23,5 +24,6 @@ func _on_h_slider_value_changed(value):
 
 
 func _on_button_pressed():
+	Variables.change_scene("res://Animations/Animation_Scenes/"+Variables.instrument+".tscn")
 	get_tree().change_scene_to_file("res://Sequence.tscn")
 	pass # Replace with function body.

@@ -24,6 +24,7 @@ func play_next_sound():
 	else:
 		print("Finished playing the sequence.")
 		current_index = 0  # Reset or stop based on your needs.
+		play_next_sound()
 
 func _on_sound_finished():
 	current_index += 1
