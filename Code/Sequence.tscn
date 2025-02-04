@@ -78,7 +78,6 @@ light_energy = 4.388
 omni_range = 153.865
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("3_qlgpf")]
 anchor_right = 0.08

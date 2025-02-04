@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bx6mwljbba8e4"]
-
-[ext_resource type="PackedScene" uid="uid://uqwtpfags2ki" path="res://Animations/freemocap_sample_glb.glb" id="1_sfhhf"]
-
-[node name="freemocap_sample_glb" instance=ExtResource("1_sfhhf")]

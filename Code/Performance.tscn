@@ -1,14 +1,13 @@
-[gd_scene load_steps=23 format=3 uid="uid://ddh1syyottwfg"]
+[gd_scene load_steps=22 format=3 uid="uid://ddh1syyottwfg"]
 
 [ext_resource type="Texture2D" uid="uid://deyl25pb83ux4" path="res://Textures/ESO_-_Milky_Way.jpg" id="2_i21tf"]
-[ext_resource type="Script" path="res://animation_player.gd" id="3_u4brh"]
-[ext_resource type="PackedScene" uid="uid://b3rj6qp3jwoau" path="res://Animations/Guitar Playing.fbx" id="3_uqjk2"]
 [ext_resource type="Script" path="res://audio_sequence.gd" id="3_we0ri"]
 [ext_resource type="PackedScene" uid="uid://uy5g8tn4x5im" path="res://Scripts/home.tscn" id="4_tfkw2"]
 [ext_resource type="Script" path="res://movement.gd" id="6_bv6ey"]
 [ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="7_1qjrk"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/player/player_body.gd" id="8_u3dru"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="9_idyxt"]
+[ext_resource type="Script" path="res://animation.gd" id="10_y4iid"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c3knc"]
 panorama = ExtResource("2_i21tf")
@@ -81,32 +80,6 @@ libraries = {
 "": SubResource("AnimationLibrary_kqakl")
 }
 
-[node name="Guitar Playing" parent="." instance=ExtResource("3_uqjk2")]
-
-[node name="Skeleton3D" parent="Guitar Playing" index="0"]
-bones/11/rotation = Quaternion(0.253285, 0.0616183, -0.22821, 0.938067)
-bones/13/rotation = Quaternion(-0.00166474, -0.000807781, 0.00691975, 0.999974)
-bones/15/rotation = Quaternion(-6.05934e-07, 9.95353e-11, -0.000164268, 1)
-bones/16/rotation = Quaternion(-6.08483e-20, 0, 0.000255644, 1)
-bones/17/rotation = Quaternion(-1.01002e-20, 0, -8.7922e-05, 1)
-bones/19/rotation = Quaternion(-9.78174e-07, 4.90853e-10, -0.000501806, 1)
-bones/20/rotation = Quaternion(-1.76679e-20, -2.64698e-23, 0.000849871, 1)
-bones/21/rotation = Quaternion(-2.52398e-19, 5.29396e-23, -0.000321842, 1)
-bones/23/rotation = Quaternion(6.96317e-08, 1.08506e-11, 0.000155829, 1)
-bones/24/rotation = Quaternion(-3.76103e-20, 0, -0.000221515, 1)
-bones/25/rotation = Quaternion(2.3178e-20, 6.61744e-24, -0.000112805, 1)
-bones/27/rotation = Quaternion(4.67072e-06, 2.43047e-09, 0.000520363, 1)
-bones/28/rotation = Quaternion(4.85737e-21, -6.61744e-24, 0.000846232, 1)
-bones/29/rotation = Quaternion(-1.24296e-21, 8.27181e-25, -0.000496778, 1)
-bones/32/rotation = Quaternion(-0.0246064, -0.0025614, 0.103505, 0.994321)
-bones/37/rotation = Quaternion(-0.00153136, 0.000745255, -0.00607312, 0.99998)
-bones/45/rotation = Quaternion(-4.2759e-07, -8.84662e-12, 2.06895e-05, 1)
-bones/55/rotation = Quaternion(2.70477e-09, 0.0103565, 0.999946, 2.61153e-07)
-bones/60/rotation = Quaternion(2.81915e-09, 0.010368, 0.999946, 2.71895e-07)
-
-[node name="AnimationPlayer" parent="Guitar Playing" index="1"]
-script = ExtResource("3_u4brh")
-
 [node name="Player" type="CharacterBody3D" parent="."]
 script = ExtResource("6_bv6ey")
 
@@ -160,4 +133,5 @@ scene = ExtResource("4_tfkw2")
 unshaded = true
 scene_properties_keys = PackedStringArray("Home.gd")
 
-[editable path="Guitar Playing"]
+[node name="Animation" type="Marker3D" parent="."]
+script = ExtResource("10_y4iid")

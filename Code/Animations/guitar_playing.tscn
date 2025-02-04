@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7fswpiseueem"]
-
-[ext_resource type="PackedScene" uid="uid://b3rj6qp3jwoau" path="res://Animations/Guitar Playing.fbx" id="1_xunpc"]
-
-[node name="Guitar Playing" instance=ExtResource("1_xunpc")]
