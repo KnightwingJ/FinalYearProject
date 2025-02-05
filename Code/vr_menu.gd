@@ -27,3 +27,8 @@ func _on_button_pressed():
 	Variables.change_scene("res://Animations/Animation_Scenes/"+Variables.instrument+".tscn")
 	get_tree().change_scene_to_file("res://Sequence.tscn")
 	pass # Replace with function body.
+
+
+func _on_button_2_pressed():
+	GlobalSoundManager.sound_sequence=[]
+	pass # Replace with function body.

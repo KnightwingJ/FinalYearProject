@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://775vg2cgcajx"]
+[gd_scene load_steps=31 format=3 uid="uid://775vg2cgcajx"]
 
 [ext_resource type="Script" path="res://rythmrender.gd" id="1_0jnj5"]
 [ext_resource type="Script" path="res://sequence.gd" id="1_66d3e"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://movement.gd" id="4_n2x3i"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/player/player_body.gd" id="5_7ty6n"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="6_dqnew"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="6_mlsk2"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="9_er3p4"]
 [ext_resource type="PackedScene" uid="uid://c3oc07wgvwwgw" path="res://VR_menu.tscn" id="10_7pk36"]
 
@@ -49,6 +50,10 @@ radius = 0.02
 height = 0.04
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jt7us"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_uo76x"]
+radius = 0.02
+height = 0.04
 
 [sub_resource type="SphereMesh" id="SphereMesh_h7rn0"]
 radius = 0.02
@@ -124,6 +129,8 @@ mesh = SubResource("SphereMesh_qn1fr")
 
 [node name="FunctionTeleport" parent="Player/XROrigin3D/left" instance=ExtResource("4_ipp6d")]
 
+[node name="MovementDirect" parent="Player/XROrigin3D/left" instance=ExtResource("6_mlsk2")]
+
 [node name="Right" type="XRController3D" parent="Player/XROrigin3D"]
 tracker = &"right_hand"
 
@@ -136,6 +143,7 @@ shape = SubResource("SphereShape3D_ujw6o")
 mesh = SubResource("SphereMesh_j05dd")
 
 [node name="FunctionPointer" parent="Player/XROrigin3D/Right" instance=ExtResource("6_dqnew")]
+show_laser = 2
 laser_length = 1
 
 [node name="XRToolsPlayerBody" type="CharacterBody3D" parent="Player/XROrigin3D"]
@@ -152,6 +160,10 @@ script = ExtResource("1_66d3e")
 pad_scene = ExtResource("4_m3c2h")
 
 [node name="Timer" type="Timer" parent="sequencer"]
+autostart = true
+
+[node name="timer_ball" type="MeshInstance3D" parent="sequencer"]
+mesh = SubResource("SphereMesh_uo76x")
 
 [node name="start_stop" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45797, 2.44371, -1.05203)
