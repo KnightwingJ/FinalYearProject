@@ -3,12 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b0chrtcsbx5ou"
-valid=false
+uid="uid://fgxssh3ctx8s"
+path="res://.godot/imported/Idle.fbx-bb5e22fa32742e1884c093a11d4521e6.scn"
 
 [deps]
 
-source_file="res://Models/BASE MASH - LOW POLY Male .fbx"
+source_file="res://Animations/Animation_Scenes/Idle.fbx"
+dest_files=["res://.godot/imported/Idle.fbx-bb5e22fa32742e1884c093a11d4521e6.scn"]
 
 [params]
 
@@ -26,11 +27,17 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=false
+animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
-fbx/importer=1
+_subresources={
+"nodes": {
+"PATH:AnimationPlayer": {
+"import/skip_import": true
+}
+}
+}
+fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1

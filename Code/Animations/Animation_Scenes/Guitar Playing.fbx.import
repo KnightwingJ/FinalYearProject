@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://ck8q7xyl8d4bh"
-path="res://.godot/imported/Guitar Playing.fbx-0ce0ccd251406fc3eea5b7483bd00e56.scn"
+path="res://.godot/imported/Guitar Playing.fbx-0ce0ccd251406fc3eea5b7483bd00e56.res"
 
 [deps]
 
 source_file="res://Animations/Animation_Scenes/Guitar Playing.fbx"
-dest_files=["res://.godot/imported/Guitar Playing.fbx-0ce0ccd251406fc3eea5b7483bd00e56.scn"]
+dest_files=["res://.godot/imported/Guitar Playing.fbx-0ce0ccd251406fc3eea5b7483bd00e56.res"]
 
 [params]
 
@@ -1831,6 +1831,12 @@ _subresources={
 "slice_99/save_to_file/path": "",
 "slice_99/start_frame": 0,
 "slices/amount": 0
+}
+},
+"nodes": {
+"PATH:Skeleton3D": {
+"import/skip_import": true,
+"rest_pose/external_animation_library": null
 }
 }
 }
