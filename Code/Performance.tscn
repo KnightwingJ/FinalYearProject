@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ddh1syyottwfg"]
+[gd_scene load_steps=23 format=3 uid="uid://ddh1syyottwfg"]
 
 [ext_resource type="Texture2D" uid="uid://deyl25pb83ux4" path="res://Textures/ESO_-_Milky_Way.jpg" id="2_i21tf"]
 [ext_resource type="Script" path="res://audio_sequence.gd" id="3_we0ri"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="7_qhnfl"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/player/player_body.gd" id="8_u3dru"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="9_idyxt"]
+[ext_resource type="PackedScene" uid="uid://b2f7qadgl2aw8" path="res://pause.tscn" id="10_kd36x"]
 [ext_resource type="Script" path="res://animation.gd" id="10_y4iid"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c3knc"]
@@ -136,3 +137,7 @@ scene_properties_keys = PackedStringArray("Home.gd")
 [node name="Animation" type="Marker3D" parent="."]
 script = ExtResource("10_y4iid")
 animation_path = null
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Pause" parent="CanvasLayer2" instance=ExtResource("10_kd36x")]

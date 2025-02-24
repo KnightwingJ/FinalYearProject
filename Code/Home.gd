@@ -12,5 +12,6 @@ func _process(delta):
 
 
 func _on_home_pressed():
+	GlobalSoundManager.sound_sequence=[]
 	get_tree().change_scene_to_file("res://Sequence.tscn")
 	pass # Replace with function body.

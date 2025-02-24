@@ -75,6 +75,11 @@ func make_sequencer():
 	for col in range(steps):		
 		
 		for row in range(samples.size()):
+			var label = Label3D.new()
+			label.text=file_names[row] 
+			label.font = font
+			label.position = Vector3(s * -6 * spacer, s * row * spacer,0)
+			add_child(label)
 			var pad = pad_scene.instantiate()
 			
 			var p = Vector3(s * col * spacer, s * row * spacer, 0)

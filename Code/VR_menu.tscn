@@ -5,9 +5,9 @@
 [node name="Control" type="Control"]
 layout_mode = 3
 anchor_right = 0.241
-anchor_bottom = 0.333
+anchor_bottom = 0.471
 offset_right = 0.368011
-offset_bottom = 0.216003
+offset_bottom = -0.208008
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0bfnn")
@@ -65,13 +65,10 @@ text = "Create Sequencer"
 [node name="Button2" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.81
-anchor_right = 0.464
-anchor_bottom = 0.954
-offset_left = -1.0
-offset_top = 0.0399933
-offset_right = 0.00799561
-offset_bottom = -0.0640106
+anchor_right = 0.004
+offset_top = 190.0
+offset_right = 128.888
+offset_bottom = 221.0
 text = "Reset Sequence"
 
 [connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]

@@ -16,28 +16,30 @@ var global_pitch=1.0
 
 
 func play_next_sound():
-	if current_index < sound_sequence.size():
-		var audio_stream = sound_sequence[current_index]
-		var sound_player = AudioStreamPlayer.new()
-		sound_player.stream = audio_stream
-		sound_player.volume_db=global_volume
-		sound_player.pitch_scale=global_pitch
-		add_child(sound_player)
-		
-		 # Set it as the current player
-		current_audio_player = sound_player
-		var sound = sound_sequence[current_index].resource_path.get_file().get_basename()
+	if sound_sequence.is_empty():
+		print("Sequnce Empty")
+		return
+	if current_index >= sound_sequence.size():
+		print("Restart Sequnce")
+		current_index = 0
+	var audio_stream = sound_sequence[current_index]
+	var sound_player = AudioStreamPlayer.new()
+	sound_player.stream = audio_stream
+	sound_player.volume_db=global_volume
+	sound_player.pitch_scale=global_pitch
+	add_child(sound_player)
+			
+			 # Set it as the current player
+	current_audio_player = sound_player
+	var sound = sound_sequence[current_index].resource_path.get_file().get_basename()
 
-		sound_player.play()
-		print("Playing sound:", sound)
+	sound_player.play()
+	print("Playing sound:", sound)
 
-		emit_signal("sound_changed",sound)
+	emit_signal("sound_changed",sound)
 		# Connect finished signal
-		sound_player.connect("finished", Callable(self, "_on_sound_finished"))
-	else:
-		print("Finished playing the sequence.")
-		current_index = 0  # Reset
-		play_next_sound()
+	sound_player.connect("finished", Callable(self, "_on_sound_finished"))
+
 
 func _on_sound_finished():
 	if current_audio_player:
@@ -46,6 +48,10 @@ func _on_sound_finished():
 	current_index += 1
 	play_next_sound()
 func switch_to_playback_scene():
+	sound_sequence.clear()
+	current_index = 0
+	if current_audio_player:
+		current_audio_player.queue_free()
 	if get_tree().current_scene:
 		get_tree().current_scene.queue_free()
 	var new_scene=performance_scene.instantiate()

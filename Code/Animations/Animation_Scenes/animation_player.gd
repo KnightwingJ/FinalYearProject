@@ -18,6 +18,8 @@ func _on_sound_changed(sound_name: String):
 	if sound_name in sound_animaiton_map:
 		#animation_player.play("A Chord")
 		animation_player.play(sound_animaiton_map[sound_name])
+	else:
+		animation_player.play("Idle")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

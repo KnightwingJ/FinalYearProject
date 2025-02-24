@@ -1,7 +1,7 @@
 extends Node
 
 @export var instrument:String="Guitar"
-@export var steps: float = 1
+@export var steps: int = 1
 @export var instrument_animation:PackedScene = preload("res://Animations/Animation_Scenes/Guitar.tscn")
 
 

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://rythmrender.gd" id="1_0jnj5"]
 [ext_resource type="Script" path="res://sequence.gd" id="1_66d3e"]
 [ext_resource type="Texture2D" uid="uid://deyl25pb83ux4" path="res://Textures/ESO_-_Milky_Way.jpg" id="2_5cglb"]
-[ext_resource type="PackedScene" uid="uid://chyqai0ttbchl" path="res://Scripts/control.tscn" id="3_qlgpf"]
+[ext_resource type="PackedScene" uid="uid://b2f7qadgl2aw8" path="res://pause.tscn" id="3_grco4"]
 [ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="4_ipp6d"]
 [ext_resource type="PackedScene" uid="uid://2xn0851y6k62" path="res://button.tscn" id="4_m3c2h"]
 [ext_resource type="Script" path="res://movement.gd" id="4_n2x3i"]
@@ -84,11 +84,7 @@ omni_range = 153.865
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" parent="CanvasLayer" instance=ExtResource("3_qlgpf")]
-anchor_right = 0.08
-anchor_bottom = 0.481
-offset_right = -0.160004
-offset_bottom = 0.311981
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("3_grco4")]
 
 [node name="Ground" type="StaticBody3D" parent="."]
 
@@ -155,7 +151,7 @@ script = ExtResource("5_7ty6n")
 shape = SubResource("CapsuleShape3D_jt7us")
 
 [node name="sequencer" type="Marker3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.17269, 2.40405, -0.616317)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.17269, 2.2233, -0.616317)
 script = ExtResource("1_66d3e")
 pad_scene = ExtResource("4_m3c2h")
 
@@ -166,7 +162,7 @@ autostart = true
 mesh = SubResource("SphereMesh_uo76x")
 
 [node name="start_stop" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45797, 2.44371, -1.05203)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1734, 2.09195, -2.117)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="start_stop"]
 mesh = SubResource("SphereMesh_h7rn0")
@@ -185,10 +181,15 @@ shape = SubResource("BoxShape3D_2rt24")
 mesh = SubResource("BoxMesh_7lypt")
 
 [node name="Viewport2Din3D" parent="." instance=ExtResource("9_er3p4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38438, -7.11456)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.96163, -7.11456)
 scene = ExtResource("10_7pk36")
+viewport_size = Vector2(300, 250)
 unshaded = true
 scene_properties_keys = PackedStringArray("vr_menu.gd")
+
+[node name="Viewport2Din3D2" parent="." instance=ExtResource("9_er3p4")]
+scene = ExtResource("3_grco4")
+scene_properties_keys = PackedStringArray("pause.gd")
 
 [connection signal="timeout" from="sequencer/Timer" to="sequencer" method="_on_timer_timeout"]
 [connection signal="area_entered" from="start_stop" to="sequencer" method="_on_start_stop_area_entered"]
