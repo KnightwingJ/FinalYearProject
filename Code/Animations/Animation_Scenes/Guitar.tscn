@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://cec1s6n3lhxt3"]
+[gd_scene load_steps=10 format=3 uid="uid://cec1s6n3lhxt3"]
 
 [ext_resource type="PackedScene" uid="uid://cp6ip3rwq5y6c" path="res://Animations/Animation_Scenes/fgab (1).fbx" id="1_sd0q2"]
-[ext_resource type="Script" path="res://Animations/Animation_Scenes/animation_player.gd" id="2_hpaoh"]
 [ext_resource type="Script" path="res://Animations/Animation_Scenes/guitar.gd" id="2_ip450"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o3id5"]
@@ -120,9 +119,6 @@ bones/71/rotation = Quaternion(-0.0190835, -0.698797, 0.0597494, 0.712565)
 bones/72/rotation = Quaternion(-3.0458e-05, -5.6976e-06, -0.189845, 0.981814)
 bones/73/rotation = Quaternion(0.519534, -0.472921, 0.527229, 0.477976)
 bones/74/rotation = Quaternion(0.0727312, 7.45058e-09, -5.1409e-07, 0.997352)
-
-[node name="AnimationPlayer" parent="." index="1"]
-script = ExtResource("2_hpaoh")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeBlendTree_7aqpf")

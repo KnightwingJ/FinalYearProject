@@ -19,6 +19,9 @@ func _ready() -> void:
 	GlobalSoundManager.sound_changed.connect(_on_sound_changed)
 	pass # Replace with function body.
 
+func _physics_process(delta: float) -> void:
+	handle_animations()
+
 func _on_sound_changed(sound_name: String):
 	if sound_name in sound_animaiton_map:
 		#animation_player.play("A Chord")

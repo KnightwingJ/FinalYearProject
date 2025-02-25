@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://775vg2cgcajx"]
+[gd_scene load_steps=35 format=3 uid="uid://775vg2cgcajx"]
 
 [ext_resource type="Script" path="res://rythmrender.gd" id="1_0jnj5"]
 [ext_resource type="Script" path="res://sequence.gd" id="1_66d3e"]
@@ -70,6 +70,23 @@ size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_7lypt"]
 size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="QuadMesh" id="QuadMesh_gdj0p"]
+resource_local_to_scene = true
+size = Vector2(3, 2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wnvy6"]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nd5xt"]
+transparency = 1
+cull_mode = 2
+albedo_texture = SubResource("ViewportTexture_wnvy6")
+texture_filter = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ms5rt"]
+resource_local_to_scene = true
+size = Vector3(3, 2, 0.02)
 
 [node name="root" type="Node3D"]
 script = ExtResource("1_0jnj5")
@@ -180,17 +197,41 @@ shape = SubResource("BoxShape3D_2rt24")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Perform/CollisionShape3D"]
 mesh = SubResource("BoxMesh_7lypt")
 
-[node name="Viewport2Din3D" parent="." instance=ExtResource("9_er3p4")]
+[node name="Menu" parent="." instance=ExtResource("9_er3p4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.96163, -7.11456)
 scene = ExtResource("10_7pk36")
 viewport_size = Vector2(300, 250)
 unshaded = true
 scene_properties_keys = PackedStringArray("vr_menu.gd")
 
-[node name="Viewport2Din3D2" parent="." instance=ExtResource("9_er3p4")]
+[node name="Pause" parent="." instance=ExtResource("9_er3p4")]
 scene = ExtResource("3_grco4")
 scene_properties_keys = PackedStringArray("pause.gd")
+
+[node name="Screen" parent="Pause" index="1"]
+mesh = SubResource("QuadMesh_gdj0p")
+surface_material_override/0 = SubResource("StandardMaterial3D_nd5xt")
+
+[node name="CollisionShape3D" parent="Pause/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_ms5rt")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18.9699, 8.96002, 0)
+text = "Welcome to Rhythm Render
+"
+font_size = 300
+
+[node name="Label3D" type="Label3D" parent="Label3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.78482, 0)
+text = "Select Instrument and number of steps by pointing right hand toward menu and press trigger button to select
+
+Physically press button in sequencer to select sound and place in sequence
+
+Move by using left controller stick, and trigger button to teleport."
+font_size = 150
 
 [connection signal="timeout" from="sequencer/Timer" to="sequencer" method="_on_timer_timeout"]
 [connection signal="area_entered" from="start_stop" to="sequencer" method="_on_start_stop_area_entered"]
 [connection signal="area_entered" from="Perform" to="sequencer" method="_on_perform_area_entered"]
+
+[editable path="Pause"]
