@@ -33,7 +33,7 @@ albedo_color = Color(0.72549, 0.4, 1, 1)
 material = SubResource("StandardMaterial3D_yp04n")
 size = Vector2(60, 60)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xqjkm"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i3jbp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jycyi"]
 radius = 0.01
@@ -75,13 +75,13 @@ size = Vector3(0.5, 0.5, 0.5)
 resource_local_to_scene = true
 size = Vector2(3, 2)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_wnvy6"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_7cqi6"]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nd5xt"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yho8y"]
 transparency = 1
 cull_mode = 2
-albedo_texture = SubResource("ViewportTexture_wnvy6")
+albedo_texture = SubResource("ViewportTexture_7cqi6")
 texture_filter = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ms5rt"]
@@ -117,11 +117,11 @@ skeleton = NodePath("../..")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.95644, 0.0278962)
 script = ExtResource("4_n2x3i")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_i3jbp")
+
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0821363, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = SubResource("CapsuleShape3D_xqjkm")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23809, 0)
@@ -145,6 +145,7 @@ mesh = SubResource("SphereMesh_qn1fr")
 [node name="MovementDirect" parent="Player/XROrigin3D/left" instance=ExtResource("6_mlsk2")]
 
 [node name="Right" type="XRController3D" parent="Player/XROrigin3D"]
+process_mode = 3
 tracker = &"right_hand"
 
 [node name="Area3D" type="Area3D" parent="Player/XROrigin3D/Right"]
@@ -160,7 +161,7 @@ show_laser = 2
 laser_length = 1
 
 [node name="XRToolsPlayerBody" type="CharacterBody3D" parent="Player/XROrigin3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.956, 0.028)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2.96066, 0.028)
 top_level = true
 script = ExtResource("5_7ty6n")
 
@@ -205,12 +206,13 @@ unshaded = true
 scene_properties_keys = PackedStringArray("vr_menu.gd")
 
 [node name="Pause" parent="." instance=ExtResource("9_er3p4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.87838, -3.13902)
 scene = ExtResource("3_grco4")
 scene_properties_keys = PackedStringArray("pause.gd")
 
 [node name="Screen" parent="Pause" index="1"]
 mesh = SubResource("QuadMesh_gdj0p")
-surface_material_override/0 = SubResource("StandardMaterial3D_nd5xt")
+surface_material_override/0 = SubResource("StandardMaterial3D_yho8y")
 
 [node name="CollisionShape3D" parent="Pause/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_ms5rt")
@@ -230,6 +232,7 @@ Physically press button in sequencer to select sound and place in sequence
 Move by using left controller stick, and trigger button to teleport."
 font_size = 150
 
+[connection signal="button_pressed" from="Player/XROrigin3D/left" to="CanvasLayer/Pause" method="_on_left_button_pressed"]
 [connection signal="timeout" from="sequencer/Timer" to="sequencer" method="_on_timer_timeout"]
 [connection signal="area_entered" from="start_stop" to="sequencer" method="_on_start_stop_area_entered"]
 [connection signal="area_entered" from="Perform" to="sequencer" method="_on_perform_area_entered"]

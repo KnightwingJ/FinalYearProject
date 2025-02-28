@@ -1,4 +1,4 @@
-[gd_resource type="OpenXRActionMap" load_steps=221 format=3 uid="uid://1hc8b5iddi3e"]
+[gd_resource type="OpenXRActionMap" load_steps=222 format=3 uid="uid://1hc8b5iddi3e"]
 
 [sub_resource type="OpenXRAction" id="OpenXRAction_83xq0"]
 resource_name = "trigger"
@@ -139,6 +139,10 @@ toplevel_paths = PackedStringArray("/user/hand/left", "/user/hand/right", "/user
 resource_name = "godot"
 localized_name = "Godot action set"
 actions = [SubResource("OpenXRAction_83xq0"), SubResource("OpenXRAction_a4vo8"), SubResource("OpenXRAction_qj5t6"), SubResource("OpenXRAction_byj2g"), SubResource("OpenXRAction_so6hu"), SubResource("OpenXRAction_v6pe0"), SubResource("OpenXRAction_bo6sv"), SubResource("OpenXRAction_jbypd"), SubResource("OpenXRAction_l1qpc"), SubResource("OpenXRAction_6no1p"), SubResource("OpenXRAction_ase68"), SubResource("OpenXRAction_xjk1g"), SubResource("OpenXRAction_11xpw"), SubResource("OpenXRAction_4nbvw"), SubResource("OpenXRAction_kwrkb"), SubResource("OpenXRAction_rvyuq"), SubResource("OpenXRAction_tec5u"), SubResource("OpenXRAction_b0ia4"), SubResource("OpenXRAction_kgbnr"), SubResource("OpenXRAction_r753m"), SubResource("OpenXRAction_x88tj"), SubResource("OpenXRAction_g4ndm"), SubResource("OpenXRAction_2j7eh")]
+
+[sub_resource type="OpenXRActionSet" id="OpenXRActionSet_orrif"]
+resource_name = "pause"
+localized_name = "pause"
 
 [sub_resource type="OpenXRIPBinding" id="OpenXRIPBinding_wctv6"]
 action = SubResource("OpenXRAction_kgbnr")
@@ -925,5 +929,5 @@ interaction_profile_path = "/interaction_profiles/ext/hand_interaction_ext"
 bindings = [SubResource("OpenXRIPBinding_4q3uq"), SubResource("OpenXRIPBinding_n2knu"), SubResource("OpenXRIPBinding_rilm6"), SubResource("OpenXRIPBinding_qewvp"), SubResource("OpenXRIPBinding_m3tuw"), SubResource("OpenXRIPBinding_5if8i"), SubResource("OpenXRIPBinding_iky6e"), SubResource("OpenXRIPBinding_n3t48"), SubResource("OpenXRIPBinding_bvpys"), SubResource("OpenXRIPBinding_giit2")]
 
 [resource]
-action_sets = [SubResource("OpenXRActionSet_arig5")]
+action_sets = [SubResource("OpenXRActionSet_arig5"), SubResource("OpenXRActionSet_orrif")]
 interaction_profiles = [SubResource("OpenXRInteractionProfile_u2kc0"), SubResource("OpenXRInteractionProfile_gmtlu"), SubResource("OpenXRInteractionProfile_dvp6r"), SubResource("OpenXRInteractionProfile_hod8a"), SubResource("OpenXRInteractionProfile_l0eom"), SubResource("OpenXRInteractionProfile_wnk7o"), SubResource("OpenXRInteractionProfile_k85m0"), SubResource("OpenXRInteractionProfile_g5ir5"), SubResource("OpenXRInteractionProfile_6v6m4"), SubResource("OpenXRInteractionProfile_16wfm"), SubResource("OpenXRInteractionProfile_5njn4"), SubResource("OpenXRInteractionProfile_0pt3v"), SubResource("OpenXRInteractionProfile_fjy35"), SubResource("OpenXRInteractionProfile_sucrr")]
