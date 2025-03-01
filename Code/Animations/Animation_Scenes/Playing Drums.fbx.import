@@ -1,15 +1,15 @@
 [remap]
 
-importer="animation_library"
+importer="scene"
 importer_version=1
-type="AnimationLibrary"
+type="PackedScene"
 uid="uid://cx5rugrxtgg05"
-path="res://.godot/imported/Playing Drums.fbx-318c3a1e4284bc6c8d80e91d6347eab8.res"
+path="res://.godot/imported/Playing Drums.fbx-318c3a1e4284bc6c8d80e91d6347eab8.scn"
 
 [deps]
 
 source_file="res://Animations/Animation_Scenes/Playing Drums.fbx"
-dest_files=["res://.godot/imported/Playing Drums.fbx-318c3a1e4284bc6c8d80e91d6347eab8.res"]
+dest_files=["res://.godot/imported/Playing Drums.fbx-318c3a1e4284bc6c8d80e91d6347eab8.scn"]
 
 [params]
 

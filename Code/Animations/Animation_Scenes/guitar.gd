@@ -8,9 +8,14 @@ var currAnim = IDLE
 
 var sound_animaiton_map = {
 	"e_major":ECHORD,
+	"e_menor":ECHORD,
 	"g_major":GCHORD,
+	"g_menor":GCHORD,
 	"a_major":ACHORD,
-	"c_major":CCHORD
+	"a_menor":ACHORD,
+	"c_major":CCHORD,
+	"d_major":CCHORD,
+	"d_menor":CCHORD
 }
 
 # Called when the node enters the scene tree for the first time.

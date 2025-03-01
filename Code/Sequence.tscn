@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://775vg2cgcajx"]
+[gd_scene load_steps=31 format=3 uid="uid://775vg2cgcajx"]
 
 [ext_resource type="Script" path="res://rythmrender.gd" id="1_0jnj5"]
 [ext_resource type="Script" path="res://sequence.gd" id="1_66d3e"]
@@ -71,23 +71,6 @@ size = Vector3(0.5, 0.5, 0.5)
 [sub_resource type="BoxMesh" id="BoxMesh_7lypt"]
 size = Vector3(0.5, 0.5, 0.5)
 
-[sub_resource type="QuadMesh" id="QuadMesh_gdj0p"]
-resource_local_to_scene = true
-size = Vector2(3, 2)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_7cqi6"]
-viewport_path = NodePath("Viewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yho8y"]
-transparency = 1
-cull_mode = 2
-albedo_texture = SubResource("ViewportTexture_7cqi6")
-texture_filter = 1
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ms5rt"]
-resource_local_to_scene = true
-size = Vector3(3, 2, 0.02)
-
 [node name="root" type="Node3D"]
 script = ExtResource("1_0jnj5")
 
@@ -118,16 +101,14 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.9
 script = ExtResource("4_n2x3i")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98993, 0)
 shape = SubResource("CapsuleShape3D_i3jbp")
-
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0821363, 0)
 
 [node name="XROrigin3D" type="XROrigin3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23809, 0)
 
 [node name="XRCamera3D" type="XRCamera3D" parent="Player/XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.318635, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.96824, 0)
 
 [node name="left" type="XRController3D" parent="Player/XROrigin3D"]
 tracker = &"left_hand"
@@ -161,7 +142,7 @@ show_laser = 2
 laser_length = 1
 
 [node name="XRToolsPlayerBody" type="CharacterBody3D" parent="Player/XROrigin3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2.96066, 0.028)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.51512, 0.028)
 top_level = true
 script = ExtResource("5_7ty6n")
 
@@ -205,18 +186,6 @@ viewport_size = Vector2(300, 250)
 unshaded = true
 scene_properties_keys = PackedStringArray("vr_menu.gd")
 
-[node name="Pause" parent="." instance=ExtResource("9_er3p4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.87838, -3.13902)
-scene = ExtResource("3_grco4")
-scene_properties_keys = PackedStringArray("pause.gd")
-
-[node name="Screen" parent="Pause" index="1"]
-mesh = SubResource("QuadMesh_gdj0p")
-surface_material_override/0 = SubResource("StandardMaterial3D_yho8y")
-
-[node name="CollisionShape3D" parent="Pause/StaticBody3D" index="0"]
-shape = SubResource("BoxShape3D_ms5rt")
-
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18.9699, 8.96002, 0)
 text = "Welcome to Rhythm Render
@@ -236,5 +205,3 @@ font_size = 150
 [connection signal="timeout" from="sequencer/Timer" to="sequencer" method="_on_timer_timeout"]
 [connection signal="area_entered" from="start_stop" to="sequencer" method="_on_start_stop_area_entered"]
 [connection signal="area_entered" from="Perform" to="sequencer" method="_on_perform_area_entered"]
-
-[editable path="Pause"]
