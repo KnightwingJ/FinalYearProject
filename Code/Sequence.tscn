@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://775vg2cgcajx"]
+[gd_scene load_steps=30 format=3 uid="uid://775vg2cgcajx"]
 
 [ext_resource type="Script" path="res://rythmrender.gd" id="1_0jnj5"]
 [ext_resource type="Script" path="res://sequence.gd" id="1_66d3e"]
@@ -48,8 +48,6 @@ radius = 0.01
 [sub_resource type="SphereMesh" id="SphereMesh_j05dd"]
 radius = 0.02
 height = 0.04
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jt7us"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_uo76x"]
 radius = 0.02
@@ -101,14 +99,14 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.9
 script = ExtResource("4_n2x3i")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98993, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.169512, 0)
 shape = SubResource("CapsuleShape3D_i3jbp")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23809, 0)
 
 [node name="XRCamera3D" type="XRCamera3D" parent="Player/XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.96824, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.631394, 0)
 
 [node name="left" type="XRController3D" parent="Player/XROrigin3D"]
 tracker = &"left_hand"
@@ -142,12 +140,9 @@ show_laser = 2
 laser_length = 1
 
 [node name="XRToolsPlayerBody" type="CharacterBody3D" parent="Player/XROrigin3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.51512, 0.028)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.72262, 0.028)
 top_level = true
 script = ExtResource("5_7ty6n")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/XROrigin3D/XRToolsPlayerBody"]
-shape = SubResource("CapsuleShape3D_jt7us")
 
 [node name="sequencer" type="Marker3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.17269, 2.2233, -0.616317)
@@ -187,7 +182,7 @@ unshaded = true
 scene_properties_keys = PackedStringArray("vr_menu.gd")
 
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18.9699, 8.96002, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18.9699, 16.8097, 0)
 text = "Welcome to Rhythm Render
 "
 font_size = 300

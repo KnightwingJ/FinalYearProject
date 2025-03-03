@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cpeb0efwvrsk"
 path.s3tc="res://.godot/imported/earth_texturemap.png-94f7bd3d07a37472752235714d1a1740.s3tc.ctex"
+path.etc2="res://.godot/imported/earth_texturemap.png-94f7bd3d07a37472752235714d1a1740.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Textures/earth_texturemap.png"
-dest_files=["res://.godot/imported/earth_texturemap.png-94f7bd3d07a37472752235714d1a1740.s3tc.ctex"]
+dest_files=["res://.godot/imported/earth_texturemap.png-94f7bd3d07a37472752235714d1a1740.s3tc.ctex", "res://.godot/imported/earth_texturemap.png-94f7bd3d07a37472752235714d1a1740.etc2.ctex"]
 
 [params]
 
