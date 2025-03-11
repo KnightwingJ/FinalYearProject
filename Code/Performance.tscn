@@ -83,7 +83,7 @@ script = ExtResource("6_bv6ey")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.248602, 0.927963, 3.76269)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01897, 3.78707)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.77167, 3.78707)
 shape = SubResource("CapsuleShape3D_5fwyx")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="Player"]

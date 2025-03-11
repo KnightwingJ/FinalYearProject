@@ -1,76 +1,88 @@
 extends Node
 
-signal sound_changed(sound_name:String)
+signal sound_changed(sound_name: String)
 
-var sound_sequence=[] # Store the sequence gloablly
-var performance_scene:PackedScene = preload("res://Performance.tscn")
+const POOL_SIZE = 10  # Number of pre-allocated players
+var players: Array[AudioStreamPlayer] = []
+var sound_sequence: Array = []  # Store the sequence globally
+var performance_scene: PackedScene = preload("res://Performance.tscn")
 
-var current_player: AudioStreamPlayer
-# Called when the node enters the scene tree for the first time.
-var current_audio_player = null
 var current_index = 0
+var global_volume = 0
+var global_bpm = 120
 
-var global_volume=0
-var global_pitch=1.0
+func _ready():
+	_initialize_pool()
 
+# **1. Initialize a pool of AudioStreamPlayers**
+func _initialize_pool():
+	for i in range(POOL_SIZE):
+		var player = AudioStreamPlayer.new()
+		player.volume_db = global_volume
+		player.connect("finished", Callable(self, "_on_sound_finished").bind(player))
+		add_child(player)
+		players.append(player)
 
+# **2. Get an available AudioStreamPlayer from the pool**
+func _get_available_player() -> AudioStreamPlayer:
+	for player in players:
+		if !player.playing:
+			return player
+	return null  # No available player (shouldn't happen with a well-sized pool)
 
+# **3. Play the next sound in sequence**
 func play_next_sound():
 	if sound_sequence.is_empty():
-		print("Sequnce Empty")
+		print("Sequence Empty")
 		return
+
 	if current_index >= sound_sequence.size():
-		print("Restart Sequnce")
+		print("Restarting Sequence")
 		current_index = 0
+
 	var audio_stream = sound_sequence[current_index]
-	var sound_player = AudioStreamPlayer.new()
-	sound_player.stream = audio_stream
-	sound_player.volume_db=global_volume
-	sound_player.pitch_scale=global_pitch
-	add_child(sound_player)
-			
-			 # Set it as the current player
-	current_audio_player = sound_player
-	var sound = sound_sequence[current_index].resource_path.get_file().get_basename()
+	var sound_player = _get_available_player()
 
-	sound_player.play()
-	print("Playing sound:", sound)
+	if sound_player:
+		sound_player.stream = audio_stream
+		sound_player.volume_db = global_volume
+		sound_player.pitch_scale = global_bpm / 120.0  # Adjust BPM
+		sound_player.play()
 
-	emit_signal("sound_changed",sound)
-		# Connect finished signal
-	sound_player.connect("finished", Callable(self, "_on_sound_finished"))
+		var sound_name = sound_sequence[current_index].resource_path.get_file().get_basename()
+		print("Playing sound:", sound_name)
 
+		emit_signal("sound_changed", sound_name)
 
-func _on_sound_finished():
-	if current_audio_player:
-		#emit_signal("sound_changed",sound)
-		current_audio_player.queue_free()  # Cleanup the finished player
-	current_index += 1
-	play_next_sound()
+		current_index += 1  # Move to the next sound in sequence
+
+# **4. Handle finished sounds**
+func _on_sound_finished(player: AudioStreamPlayer):
+	player.stream = null  # Reset the stream for reuse
+
+# **5. Switch to playback scene**
 func switch_to_playback_scene():
 	sound_sequence.clear()
 	current_index = 0
-	if current_audio_player:
-		current_audio_player.queue_free()
+
+	for player in players:
+		player.stop()
+
 	if get_tree().current_scene:
 		get_tree().current_scene.queue_free()
-	var new_scene=performance_scene.instantiate()
+
+	var new_scene = performance_scene.instantiate()
 	get_tree().root.add_child(new_scene)
 
-func set_global_volume(value):
-	global_volume=value
-	if current_audio_player:
-		current_audio_player.volume_db = global_volume
+# **6. Set volume globally**
+func set_global_volume(value: float):
+	global_volume = value
+	for player in players:
+		player.volume_db = 20.0 * log(max(value, 0.0001))  # Convert linear value to dB
 
-func set_global_pitch(value):
-	global_pitch=value
-	if current_audio_player:
-		current_audio_player.pitch_scale = global_pitch
-
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+# **7. Set BPM globally**
+func set_global_bpm(value: float):
+	global_bpm = value
+	for player in players:
+		if player.playing:
+			player.pitch_scale = value / 120.0  # Adjust pitch while keeping relative speed

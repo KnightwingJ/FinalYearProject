@@ -15,3 +15,16 @@ func _on_home_pressed():
 	GlobalSoundManager.sound_sequence=[]
 	get_tree().change_scene_to_file("res://Sequence.tscn")
 	pass # Replace with function body.
+
+func _on_volume_value_changed(value: float) -> void:
+	if GlobalSoundManager and GlobalSoundManager.current_audio_player:
+		GlobalSoundManager.set_global_volume(value)
+		print("Volume set to:", value)
+	pass # Replace with function body.
+
+
+func _on_bpm_value_changed(value: float) -> void:
+	if GlobalSoundManager and GlobalSoundManager.current_audio_player:
+		GlobalSoundManager.set_global_bpm(value)
+		print("BPM set to:", value)
+	pass # Replace with function body.

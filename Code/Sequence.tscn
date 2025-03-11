@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://775vg2cgcajx"]
+[gd_scene load_steps=31 format=3 uid="uid://775vg2cgcajx"]
 
 [ext_resource type="Script" path="res://rythmrender.gd" id="1_0jnj5"]
 [ext_resource type="Script" path="res://sequence.gd" id="1_66d3e"]
@@ -64,10 +64,14 @@ albedo_color = Color(0.34902, 0, 0.74902, 1)
 radius = 0.02
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2rt24"]
-size = Vector3(0.5, 0.5, 0.5)
+size = Vector3(0.7, 0.2, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g0wp1"]
+albedo_color = Color(0.144667, 0.62, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_7lypt"]
-size = Vector3(0.5, 0.5, 0.5)
+material = SubResource("StandardMaterial3D_g0wp1")
+size = Vector3(0.7, 0.2, 0.2)
 
 [node name="root" type="Node3D"]
 script = ExtResource("1_0jnj5")
@@ -173,6 +177,10 @@ shape = SubResource("BoxShape3D_2rt24")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Perform/CollisionShape3D"]
 mesh = SubResource("BoxMesh_7lypt")
+
+[node name="Label3D" type="Label3D" parent="Perform"]
+transform = Transform3D(-0.9996, 0, 0.0282707, 0, 1, 0, -0.0282707, 0, -0.9996, 0, 0, -0.116526)
+text = "Perform"
 
 [node name="Menu" parent="." instance=ExtResource("9_er3p4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.96163, -7.11456)
