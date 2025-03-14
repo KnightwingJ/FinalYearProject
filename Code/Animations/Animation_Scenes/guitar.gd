@@ -25,7 +25,8 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _physics_process(delta: float) -> void:
-	handle_animations()
+	#handle_animations()
+	pass
 
 func _on_sound_changed(sound_name: String):
 	if sound_name in sound_animaiton_map:
@@ -34,6 +35,7 @@ func _on_sound_changed(sound_name: String):
 		currAnim=sound_animaiton_map[sound_name]
 	else:
 		currAnim=IDLE
+	handle_animations()
 func handle_animations():
 	match currAnim:
 		IDLE:

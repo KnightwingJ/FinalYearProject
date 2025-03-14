@@ -2797,7 +2797,7 @@ input_4/break_loop_at_end = false
 input_4/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7aqpf"]
-graph_offset = Vector2(-313.293, -110.438)
+graph_offset = Vector2(-407.126, -49.251)
 nodes/AChord/node = SubResource("AnimationNodeAnimation_o3id5")
 nodes/AChord/position = Vector2(-500, 120)
 nodes/CCHord/node = SubResource("AnimationNodeAnimation_n2e10")

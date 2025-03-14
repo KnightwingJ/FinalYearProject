@@ -1,9 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://ddh1syyottwfg"]
+[gd_scene load_steps=21 format=3 uid="uid://ddh1syyottwfg"]
 
 [ext_resource type="Texture2D" uid="uid://deyl25pb83ux4" path="res://Textures/ESO_-_Milky_Way.jpg" id="2_i21tf"]
 [ext_resource type="Script" path="res://audio_sequence.gd" id="3_we0ri"]
 [ext_resource type="PackedScene" uid="uid://uy5g8tn4x5im" path="res://Scripts/home.tscn" id="4_tfkw2"]
-[ext_resource type="Script" path="res://movement.gd" id="6_bv6ey"]
 [ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="7_1qjrk"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="7_qhnfl"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/player/player_body.gd" id="8_u3dru"]
@@ -30,8 +29,6 @@ albedo_color = Color(0.72549, 0.4, 1, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_upaui"]
 material = SubResource("StandardMaterial3D_oipe2")
 size = Vector2(60, 60)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5fwyx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qiu0p"]
 radius = 0.01
@@ -76,56 +73,46 @@ visible = false
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("4_tfkw2")]
 
-[node name="Player" type="CharacterBody3D" parent="."]
-script = ExtResource("6_bv6ey")
-
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.248602, 0.927963, 3.76269)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.77167, 3.78707)
-shape = SubResource("CapsuleShape3D_5fwyx")
-
-[node name="XROrigin3D" type="XROrigin3D" parent="Player"]
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15526, 3.77545)
 
-[node name="XRCamera3D" type="XRCamera3D" parent="Player/XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.604132, 0)
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.283915, 0)
 
-[node name="Left" type="XRController3D" parent="Player/XROrigin3D"]
+[node name="Left" type="XRController3D" parent="XROrigin3D"]
 tracker = &"left_hand"
 
-[node name="Area3D" type="Area3D" parent="Player/XROrigin3D/Left"]
+[node name="Area3D" type="Area3D" parent="XROrigin3D/Left"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/XROrigin3D/Left/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/Left/Area3D"]
 shape = SubResource("SphereShape3D_qiu0p")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/XROrigin3D/Left/Area3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/Left/Area3D"]
 mesh = SubResource("SphereMesh_prvel")
 
-[node name="FunctionTeleport" parent="Player/XROrigin3D/Left" instance=ExtResource("7_1qjrk")]
+[node name="FunctionTeleport" parent="XROrigin3D/Left" instance=ExtResource("7_1qjrk")]
 
-[node name="Right" type="XRController3D" parent="Player/XROrigin3D"]
+[node name="Right" type="XRController3D" parent="XROrigin3D"]
 tracker = &"right_hand"
 
-[node name="Area3D" type="Area3D" parent="Player/XROrigin3D/Right"]
+[node name="Area3D" type="Area3D" parent="XROrigin3D/Right"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/XROrigin3D/Right/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/Right/Area3D"]
 shape = SubResource("SphereShape3D_oslk1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/XROrigin3D/Right/Area3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/Right/Area3D"]
 mesh = SubResource("SphereMesh_3hs81")
 
-[node name="FunctionPointer" parent="Player/XROrigin3D/Right" instance=ExtResource("7_qhnfl")]
+[node name="FunctionPointer" parent="XROrigin3D/Right" instance=ExtResource("7_qhnfl")]
 show_laser = 2
 laser_length = 1
 
-[node name="XRToolsPlayerBody" type="CharacterBody3D" parent="Player/XROrigin3D"]
+[node name="XRToolsPlayerBody" type="CharacterBody3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03147, 3.78363)
 top_level = true
 script = ExtResource("8_u3dru")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/XROrigin3D/XRToolsPlayerBody"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/XRToolsPlayerBody"]
 shape = SubResource("CapsuleShape3D_0m3nk")
 
 [node name="Viewport2Din3D" parent="." instance=ExtResource("9_idyxt")]
@@ -135,6 +122,7 @@ unshaded = true
 scene_properties_keys = PackedStringArray("Home.gd")
 
 [node name="Animation" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.318843, 0)
 script = ExtResource("10_y4iid")
 animation_path = null
 
