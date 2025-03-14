@@ -69,7 +69,6 @@ mesh = SubResource("PlaneMesh_upaui")
 skeleton = NodePath("../..")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("4_tfkw2")]
 
@@ -118,6 +117,7 @@ shape = SubResource("CapsuleShape3D_0m3nk")
 [node name="Viewport2Din3D" parent="." instance=ExtResource("9_idyxt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91449, 3.44632, 0)
 scene = ExtResource("4_tfkw2")
+viewport_size = Vector2(300, 300)
 unshaded = true
 scene_properties_keys = PackedStringArray("Home.gd")
 

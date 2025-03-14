@@ -12,10 +12,14 @@ grow_vertical = 2
 script = ExtResource("1_wudhg")
 
 [node name="Home" type="Button" parent="."]
-layout_mode = 0
-offset_top = 141.0
-offset_right = 55.0
-offset_bottom = 172.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.135
+anchor_bottom = 0.355
+offset_left = 3.0
+offset_top = 195.0
+offset_right = -97.52
+offset_bottom = -4.04001
 text = "Home"
 
 [node name="Volume" type="VSlider" parent="."]
@@ -25,37 +29,47 @@ anchor_right = 0.042
 anchor_bottom = 0.153
 offset_left = 1.0
 offset_top = 3.0
-offset_right = 0.615997
-offset_bottom = 2.856
+offset_right = 0.616001
+offset_bottom = 28.856
 max_value = 1.0
 step = 0.01
 value = 1.0
 
 [node name="Label" type="Label" parent="Volume"]
-layout_mode = 0
-offset_top = 110.0
-offset_right = 59.0
-offset_bottom = 133.0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.111
+anchor_right = 1.229
+anchor_bottom = 1.343
+offset_left = -1.0
+offset_top = -7.875
+offset_right = -0.992001
+offset_bottom = -7.84299
 text = "Volume"
 
 [node name="BPM" type="VSlider" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.043
+anchor_right = 0.115
 anchor_bottom = 0.159
 offset_left = 83.0
-offset_right = 82.464
-offset_bottom = -0.0320053
+offset_right = -0.479996
+offset_bottom = 23.968
 min_value = 60.0
 max_value = 240.0
 value = 120.0
 
 [node name="Label" type="Label" parent="BPM"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 111.0
-offset_right = 43.0
-offset_bottom = 134.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.102
+anchor_top = 1.283
+anchor_right = 0.878
+anchor_bottom = 1.5
+offset_left = -0.998
+offset_top = -28.941
+offset_right = 0.978001
+offset_bottom = -28.943
 text = "BPM"
 
 [connection signal="pressed" from="Home" to="." method="_on_home_pressed"]

@@ -11,7 +11,7 @@ var current_player: AudioStreamPlayer
 var current_audio_player = null
 var current_index = 0
 
-var global_volume=0
+var global_volume=1
 var global_bpm=120
 var new_bpm=120
 
