@@ -32,10 +32,12 @@ offset_top = 26.0
 offset_right = 118.0
 offset_bottom = 57.0
 selected = 0
-item_count = 2
+item_count = 3
 popup/item_0/text = "Guitar"
 popup/item_1/text = "Drums"
 popup/item_1/id = 1
+popup/item_2/text = "Piano"
+popup/item_2/id = 2
 
 [node name="HSlider" type="HSlider" parent="."]
 layout_mode = 0
