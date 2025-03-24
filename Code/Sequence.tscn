@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://775vg2cgcajx"]
+[gd_scene load_steps=31 format=3 uid="uid://775vg2cgcajx"]
 
 [ext_resource type="Script" path="res://rythmrender.gd" id="1_0jnj5"]
 [ext_resource type="Script" path="res://sequence.gd" id="1_66d3e"]
@@ -71,6 +71,9 @@ albedo_color = Color(0.144667, 0.62, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_7lypt"]
 material = SubResource("StandardMaterial3D_g0wp1")
 size = Vector3(0.7, 0.2, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ruuib"]
+size = Vector3(60, 30, 1)
 
 [node name="root" type="Node3D"]
 script = ExtResource("1_0jnj5")
@@ -199,6 +202,33 @@ Physically press button in sequencer to select sound and place in sequence
 
 Move by using left controller stick, and trigger button to teleport."
 font_size = 150
+
+[node name="Wall" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92255, -28.4393)
+shape = SubResource("BoxShape3D_ruuib")
+
+[node name="Wall2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 57.8615)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92255, -28.4393)
+shape = SubResource("BoxShape3D_ruuib")
+
+[node name="Wall3" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.0257931, 0, -0.999667, 0, 1, 0, 0.999667, 0, -0.0257931, 0, 0, -0.152943)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92255, -28.4393)
+shape = SubResource("BoxShape3D_ruuib")
+
+[node name="Wall4" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.0325795, 0, 0.999469, 0, 1, 0, -0.999469, 0, -0.0325795, 1.51242, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92255, -28.4393)
+shape = SubResource("BoxShape3D_ruuib")
 
 [connection signal="button_pressed" from="XROrigin3D/left" to="CanvasLayer/Pause" method="_on_left_button_pressed"]
 [connection signal="timeout" from="sequencer/Timer" to="sequencer" method="_on_timer_timeout"]
