@@ -28,3 +28,7 @@ func _on_bpm_value_changed(value: float) -> void:
 		GlobalSoundManager.set_global_bpm(value)
 		print("BPM set to:", value)
 	pass # Replace with function body.
+
+
+func _on_button_pressed():
+	get_tree().quit()

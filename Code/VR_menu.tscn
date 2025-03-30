@@ -71,7 +71,7 @@ anchor_right = 0.004
 offset_top = 190.0
 offset_right = 128.888
 offset_bottom = 221.0
-text = "Reset Sequence"
+text = "Quit"
 
 [connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]

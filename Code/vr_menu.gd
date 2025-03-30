@@ -30,5 +30,4 @@ func _on_button_pressed():
 
 
 func _on_button_2_pressed():
-	GlobalSoundManager.sound_sequence=[]
-	pass # Replace with function body.
+	get_tree().quit()

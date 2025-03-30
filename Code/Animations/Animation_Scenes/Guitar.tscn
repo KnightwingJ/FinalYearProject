@@ -2775,6 +2775,7 @@ animation = &"Idle"
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_o27c0"]
 xfade_time = 1.0
+allow_transition_to_self = true
 input_0/name = "Idle"
 input_0/auto_advance = false
 input_0/break_loop_at_end = false
@@ -2797,7 +2798,6 @@ input_4/break_loop_at_end = false
 input_4/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7aqpf"]
-graph_offset = Vector2(-407.126, -49.251)
 nodes/AChord/node = SubResource("AnimationNodeAnimation_o3id5")
 nodes/AChord/position = Vector2(-500, 120)
 nodes/CCHord/node = SubResource("AnimationNodeAnimation_n2e10")

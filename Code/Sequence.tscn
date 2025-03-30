@@ -48,10 +48,6 @@ height = 0.04
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q6b1x"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_uo76x"]
-radius = 0.02
-height = 0.04
-
 [sub_resource type="SphereMesh" id="SphereMesh_h7rn0"]
 radius = 0.02
 height = 0.04
@@ -74,6 +70,10 @@ size = Vector3(0.7, 0.2, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ruuib"]
 size = Vector3(60, 30, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_uo76x"]
+radius = 0.02
+height = 0.04
 
 [node name="root" type="Node3D"]
 script = ExtResource("1_0jnj5")
@@ -121,12 +121,14 @@ mesh = SubResource("SphereMesh_qn1fr")
 [node name="FunctionTeleport" parent="XROrigin3D/left" instance=ExtResource("4_ipp6d")]
 
 [node name="MovementDirect" parent="XROrigin3D/left" instance=ExtResource("6_mlsk2")]
+strafe = true
 
 [node name="Right" type="XRController3D" parent="XROrigin3D"]
 process_mode = 3
 tracker = &"right_hand"
 
 [node name="Area3D" type="Area3D" parent="XROrigin3D/Right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86265e-09, 0, -0.0314906)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/Right/Area3D"]
 shape = SubResource("SphereShape3D_ujw6o")
@@ -146,17 +148,6 @@ script = ExtResource("5_7ty6n")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/XRToolsPlayerBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000103801, -0.341738, 4.53726e-12)
 shape = SubResource("CapsuleShape3D_q6b1x")
-
-[node name="sequencer" type="Marker3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.17269, 2.45215, -0.616317)
-script = ExtResource("1_66d3e")
-pad_scene = ExtResource("4_m3c2h")
-
-[node name="Timer" type="Timer" parent="sequencer"]
-autostart = true
-
-[node name="timer_ball" type="MeshInstance3D" parent="sequencer"]
-mesh = SubResource("SphereMesh_uo76x")
 
 [node name="start_stop" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1734, 2.37094, -2.117)
@@ -200,7 +191,9 @@ text = "Select Instrument and number of steps by pointing right hand toward menu
 
 Physically press button in sequencer to select sound and place in sequence
 
-Move by using left controller stick, and trigger button to teleport."
+Move by using left controller stick, and trigger button to teleport.
+
+Current Limitations: Multiple Sounds in the same step, will not be played together in the performance."
 font_size = 150
 
 [node name="Wall" type="StaticBody3D" parent="."]
@@ -230,7 +223,18 @@ transform = Transform3D(-0.0325795, 0, 0.999469, 0, 1, 0, -0.999469, 0, -0.03257
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92255, -28.4393)
 shape = SubResource("BoxShape3D_ruuib")
 
+[node name="sequencer" type="Marker3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.17269, 2.31923, -0.598791)
+script = ExtResource("1_66d3e")
+pad_scene = ExtResource("4_m3c2h")
+
+[node name="Timer" type="Timer" parent="sequencer"]
+autostart = true
+
+[node name="timer_ball" type="MeshInstance3D" parent="sequencer"]
+mesh = SubResource("SphereMesh_uo76x")
+
 [connection signal="button_pressed" from="XROrigin3D/left" to="CanvasLayer/Pause" method="_on_left_button_pressed"]
-[connection signal="timeout" from="sequencer/Timer" to="sequencer" method="_on_timer_timeout"]
 [connection signal="area_entered" from="start_stop" to="sequencer" method="_on_start_stop_area_entered"]
 [connection signal="area_entered" from="Perform" to="sequencer" method="_on_perform_area_entered"]
+[connection signal="timeout" from="sequencer/Timer" to="sequencer" method="_on_timer_timeout"]

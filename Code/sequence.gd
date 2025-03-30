@@ -18,7 +18,6 @@ var cols:int
 var instrument = Variables.instrument
 #Variables.instrument
 
-
 func initialise_sequence(rows, cols):
 	for i in range(rows):
 		var row = []

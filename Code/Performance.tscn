@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://ddh1syyottwfg"]
+[gd_scene load_steps=23 format=3 uid="uid://ddh1syyottwfg"]
 
 [ext_resource type="Texture2D" uid="uid://deyl25pb83ux4" path="res://Textures/ESO_-_Milky_Way.jpg" id="2_i21tf"]
 [ext_resource type="Script" path="res://audio_sequence.gd" id="3_we0ri"]
 [ext_resource type="PackedScene" uid="uid://uy5g8tn4x5im" path="res://Scripts/home.tscn" id="4_tfkw2"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="5_15obu"]
 [ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="7_1qjrk"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="7_qhnfl"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/player/player_body.gd" id="8_u3dru"]
@@ -93,6 +94,8 @@ shape = SubResource("SphereShape3D_qiu0p")
 mesh = SubResource("SphereMesh_prvel")
 
 [node name="FunctionTeleport" parent="XROrigin3D/Left" instance=ExtResource("7_1qjrk")]
+
+[node name="MovementDirect" parent="XROrigin3D/Left" instance=ExtResource("5_15obu")]
 
 [node name="Right" type="XRController3D" parent="XROrigin3D"]
 tracker = &"right_hand"
