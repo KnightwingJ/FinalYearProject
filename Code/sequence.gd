@@ -29,6 +29,8 @@ func initialise_sequence(rows, cols):
 
 func _ready():
 	#Variables.instrument="Guitar"
+	print("Running on platform: ", OS.get_name())
+	print("Resource path base: ", OS.get_executable_path().get_base_dir())
 	print("The current instrument is "+Variables.instrument)
 	print(steps)
 	load_samples()
@@ -94,21 +96,29 @@ func load_samples():
 	var full_path=path_str+instrument
 	print(full_path)
 	var dir = DirAccess.open(full_path)
+	print(dir)
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
 			if dir.current_is_dir():
 				print("Found directory: " + file_name)
-			if file_name.ends_with('.wav') or file_name.ends_with('.mp3'):			
-				file_name = file_name.left(len(file_name))
+			else:
+				print("NO DIR")
+			if file_name.ends_with('.wav.import') or file_name.ends_with('.mp3.import'):			
+				file_name = file_name.left(len(file_name) - len(".import"))
 				var stream = load(full_path + "/" + file_name)
 				stream.resource_name = file_name
 				samples.push_back(stream)
 				file_names.push_back(file_name)
 				# $AudioStreamPlayer.play()
 				# break
+			else:
+				print("NO Music")
 			file_name = dir.get_next()	
+	else:
+		print("Failed to load files")
+		print("Error code: ", DirAccess.get_open_error())
 
 func play_step(col):
 	var p = Vector3(s * col * spacer, s * -1 * spacer, 0)
